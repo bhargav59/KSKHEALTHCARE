@@ -3,13 +3,12 @@ import { Link } from 'react-router-dom';
 
 const BlogList = () => {
   const blogPosts = [
-    { id: 1, title: 'Acupuncture Blog', path: '/blog/acupuncture' },
-    { id: 2, title: 'Ayurveda Blog', path: '/blog/ayurveda' },
-    { id: 3, title: 'Cupping Therapy Blog', path: '/blog/cupping-therapy' },
-    { id: 4, title: 'Homeopathy Blog', path: '/blog/homeopathy' },
-    { id: 5, title: 'Marma Therapy Blog', path: '/blog/marma-therapy' },
-    { id: 6, title: 'Reflexology Blog', path: '/blog/reflexology' },
-    { id: 7, title: 'Speech Therapy Blog', path: '/blog/speech-therapy' },
+    { id: 1, title: 'Acupuncture Therapies', path: '/blog/acupuncture-therapies' },
+    { id: 2, title: 'Acupressure & Reflexology', path: '/blog/acupressure-therapies' },
+    { id: 3, title: 'Ayurvedic & Panchakarma', path: '/blog/ayurvedic-panchakarma' },
+    { id: 4, title: 'Neuro-Functional Rehabilitation', path: '/blog/neuro-rehab' },
+    { id: 5, title: 'Hearing Care & Auditory Rehabilitation', path: '/blog/hearing-care' },
+    { id: 6, title: 'Nutrition & Wellness', path: '/blog/nutrition-wellness' },
   ];
 
   return (

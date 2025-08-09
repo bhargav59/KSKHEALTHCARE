@@ -1,6 +1,6 @@
 {
   // Cloudflare Worker/Assets configuration for deploying the static Vite build
-  "name": "ksk-healthcare",
+  "name": "kskhealthcare",
   "compatibility_date": "2025-08-09",
   // Run the Vite production build before deploying
   "build": {

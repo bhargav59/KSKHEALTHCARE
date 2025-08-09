@@ -114,7 +114,21 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Global map aspect ratio (3:2) applied via class, so no JS enforcement is needed */
+.map-embed {
+  aspect-ratio: 3 / 2;
+  width: 100%;
+}
+
+.map-embed>iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: 0;
 }

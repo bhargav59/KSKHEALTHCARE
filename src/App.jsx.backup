@@ -12,7 +12,7 @@ import './App.css';
 
 // Import images
 import heroBanner from './assets/new-hero-banner.jpg';
-import aboutBanner from './assets/about-banner.png';
+import aboutBanner from './assets/about-banner.jpg';
 import acupunctureImg from './assets/acupuncture.jpg';
 import speechTherapyImg from './assets/speech-therapy.jpg';
 import drSwethaImg from './assets/dr-swetha.png';
@@ -20,9 +20,7 @@ import drMaheshImg from './assets/dr-mahesh.jpg';
 import ayurvedaPanchakarmaImg from './assets/ayurveda-panchakarma.jpg';
 import marmaTherapyImg from './assets/marma-therapy.jpg';
 import reflexologyImg from './assets/reflexology.jpg';
-import nutritionDietImg from './assets/nutrients.png';
-
-//import homeopathyImg from './assets/homeopathy.jpg';
+import homeopathyImg from './assets/homeopathy.jpg';
 import kskMapImg from './assets/ksk-map.jpg'; // Added kskMapImg
 // New doctor images
 import drNishibhaImg from './assets/dr-nishibha.jpg';
@@ -161,7 +159,7 @@ const App = () => {
       name: 'Nutrition & Wellness',
       description: 'Personalized diet plans that treat food as medicine to support healing, immunity and vitality.',
       benefits: ['Weight Management', 'Metabolic Health', 'Enhanced Immunity', 'Energy & Vitality'],
-      image: nutritionDietImg,
+      image: ayurvedaImg,
       icon: Heart,
       blogPath: '/services/nutrition'
     }
@@ -356,6 +354,96 @@ const App = () => {
       rating: 5,
       text: "Aarohi, my daughter, has learnt some dialogues from her brother Abhimanyu's role in drama. It's a miraculous journey that she is able to speak so fluently. Very grateful to you Dr. Swetha and your team.",
       category: 'Speech Therapy'
+    },
+    {
+      id: 2,
+      name: 'Shalini',
+      location: 'Koramangala',
+      service: 'Ayurveda & Panchakarma',
+      doctor: 'Dr. Maheshwarswami K.H',
+      rating: 5,
+      text: "KSK Products and services are potent and herbal, offering effective solutions without side effects. Trusted for their purity and efficacy, they cater to various needs from skincare to supplements.",
+      category: 'Ayurveda'
+    },
+    {
+      id: 3,
+      name: 'Ramesh Kumar',
+      location: 'Jayanagar',
+      service: 'Acupuncture',
+      doctor: 'Dr. Maheshwarswami K.H',
+      rating: 5,
+      text: "For years, I suffered from debilitating back pain. After just a few sessions of acupuncture at KSK Healthcare, I feel like a new person. The relief is incredible, and the team is so supportive and knowledgeable.",
+      category: 'Acupuncture'
+    },
+    {
+      id: 4,
+      name: 'Priya Sharma',
+      location: 'Indiranagar',
+      service: 'Ayurveda & Panchakarma',
+      doctor: 'Dr. Maheshwarswami K.H',
+      rating: 5,
+      text: "The Panchakarma therapy at KSK Healthcare was a truly transformative experience. I feel detoxified, rejuvenated, and my energy levels have soared. The personalized care and serene environment made all the difference.",
+      category: 'Panchakarma'
+    },
+    {
+      id: 5,
+      name: 'Anil Kumar',
+      location: 'Basavanagudi',
+      service: 'Homeopathy',
+      doctor: 'Dr. Gandrajupalli Swetha',
+      rating: 5,
+      text: "I was skeptical about homeopathy, but KSK Healthcare changed my mind. Their personalized approach and gentle remedies have significantly improved my chronic allergies. Highly recommend!",
+      category: 'Homeopathy'
+    },
+    {
+      id: 6,
+      name: 'Deepa Reddy',
+      location: 'Malleshwaram',
+      service: 'Cupping Therapy',
+      doctor: 'Dr. Maheshwarswami K.H',
+      rating: 5,
+      text: "Cupping therapy at KSK Healthcare helped relieve my muscle stiffness and pain. The therapists are skilled and the clinic is very clean. I felt immediate relief after the sessions.",
+      category: 'Cupping Therapy'
+    },
+    {
+      id: 7,
+      name: 'Suresh Bhat',
+      location: 'Rajajinagar',
+      service: 'Reflexology',
+      doctor: 'Dr. Gandrajupalli Swetha',
+      rating: 5,
+      text: "The reflexology sessions are incredibly relaxing and therapeutic. I always leave feeling refreshed and re-energized. KSK Healthcare provides a truly holistic healing experience.",
+      category: 'Reflexology'
+    },
+    {
+      id: 8,
+      name: 'Meena Devi',
+      location: 'Whitefield',
+      service: 'Marma Therapy',
+      doctor: 'Dr. Maheshwarswami K.H',
+      rating: 5,
+      text: "Marma therapy has been a revelation for my chronic fatigue. Dr. Maheshwarswami's expertise is remarkable, and I've seen a significant improvement in my energy levels and overall well-being.",
+      category: 'Marma Therapy'
+    },
+    {
+      id: 9,
+      name: 'John Doe',
+      location: 'Koramangala',
+      service: 'Speech & Hearing Therapy',
+      doctor: 'Dr. Gandrajupalli Swetha',
+      rating: 5,
+      text: "My son's speech development has come so far thanks to Dr. Swetha and her team. They are patient, encouraging, and truly dedicated. We are so grateful for their support.",
+      category: 'Speech Therapy'
+    },
+    {
+      id: 10,
+      name: 'Sarah Khan',
+      location: 'HSR Layout',
+      service: 'Ayurveda & Panchakarma',
+      doctor: 'Dr. Maheshwarswami K.H',
+      rating: 5,
+      text: "KSK Healthcare's Ayurvedic treatments are exceptional. I experienced profound healing and relaxation during my Panchakarma. The staff is caring and the environment is serene.",
+      category: 'Ayurveda'
     }
   ];
 
@@ -380,7 +468,7 @@ const App = () => {
   // Business Information (NAP)
   const businessInfo = {
     name: 'KSK Healthcare',
-    fullName: 'KSK Healthcare - Cure and Care with a Difference',
+    fullName: 'KSK Healthcare - Holistic Wellness Center',
     address: {
       street: '6B, Kote NCMR Building, Karthik Nagar Service Road',
       area: 'Outer Ring Rd, Doddanekundi',
@@ -405,7 +493,7 @@ const App = () => {
     "@type": "MedicalClinic",
     "name": businessInfo.fullName,
     "alternateName": businessInfo.name,
-    "description": "Premier clinic in Bangalore offering Acupuncture, Ayurveda, Speech Therapy, and comprehensive traditional healing modalities integrated with modern medical practices. Cure and Care with a Difference.",
+    "description": "Premier holistic wellness center in Bangalore offering Acupuncture, Ayurveda, Speech Therapy, and comprehensive traditional healing modalities integrated with modern medical practices.",
     "url": businessInfo.website,
     "telephone": businessInfo.phone,
     "email": businessInfo.email,
@@ -496,7 +584,7 @@ const App = () => {
         <Route path="/" element={
           <div className="min-h-screen bg-white">
             <Helmet>
-              <title>KSK Healthcare | Cure and Care with a Difference in Bangalore</title>
+              <title>KSK Healthcare | Holistic Wellness Center in Bangalore</title>
               <meta name="description" content="Discover world-class holistic healthcare in Bangalore at KSK Healthcare. We blend ancient wisdom with modern techniques like Acupuncture, Ayurveda, and Speech Therapy for your optimal wellness." />
               <meta name="keywords" content="holistic healthcare, Bangalore, acupuncture, ayurveda, panchakarma, speech therapy, neuro-rehab, hearing care, nutrition, wellness center" />
 
@@ -506,8 +594,8 @@ const App = () => {
                   "@context": "https://schema.org",
                   "@type": "MedicalClinic",
                   "name": "KSK Healthcare",
-                  "alternateName": "KSK Healthcare - Cure and Care with a Difference",
-                  "description": "Premier clinic in Bangalore offering Acupuncture, Ayurveda, Speech Therapy, Neuro-Rehabilitation, and comprehensive healthcare services. Cure and Care with a Difference.",
+                  "alternateName": "KSK Healthcare - Holistic Wellness Center",
+                  "description": "Premier holistic wellness center in Bangalore offering Acupuncture, Ayurveda, Speech Therapy, Neuro-Rehabilitation, and comprehensive healthcare services.",
                   "url": "https://kskhealthcare.in",
                   "logo": "https://kskhealthcare.in/logo.png",
                   "image": "https://kskhealthcare.in/assets/new-hero-banner.jpg",
@@ -619,7 +707,7 @@ const App = () => {
                     <img src="/logo.png" alt="KSK Healthcare Logo" className="h-12" />
                     <div>
                       <h1 className="text-xl font-bold text-gray-900">KSK Healthcare</h1>
-                      <p className="text-xs text-gray-600">Cure and Care with a Difference</p>
+                      <p className="text-xs text-gray-600">Holistic Wellness Center</p>
                     </div>
                   </div>
 
@@ -907,8 +995,8 @@ const App = () => {
                   <div className="relative mb-12">
                     <img
                       src={aboutBanner}
-                      alt="About KSK Healthcare"
-                      className="w-full aspect-[16/9] object-cover rounded-xl shadow-lg"
+                      alt="KSK Healthcare Facility"
+                      className="w-full h-64 md:h-80 object-cover rounded-xl shadow-lg"
                     />
                     <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 bg-white rounded-lg shadow-lg p-6">
                       <div className="text-2xl font-bold text-green-600 text-center">12+</div>
@@ -920,7 +1008,7 @@ const App = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mb-12">
                   <div>
                     <p className="text-lg text-gray-600 mb-6">
-                      KSK Healthcare is a premier clinic in Bangalore, dedicated to providing Cure and Care with a Difference
+                      KSK Healthcare is a premier holistic wellness center in Bangalore, dedicated to providing
                       world-class healthcare services that integrate traditional healing wisdom with modern medical practices.
                     </p>
                     <p className="text-gray-600 mb-8">
@@ -1405,22 +1493,18 @@ const App = () => {
                     {/* Clickable Map Image */}
                     <div className="bg-gray-100 rounded-xl overflow-hidden">
                       <a
-                        href="https://www.google.com/maps?q=KSK+Healthcare,+Doddanekundi,+Bengaluru&ll=12.9698,77.7499&z=17"
+                        href="https://maps.app.goo.gl/LfKjkmm7VcutWpE27"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="block relative group cursor-pointer"
-                        aria-label="Open Google Maps location for KSK Healthcare in a new tab"
-                        title="Open in Google Maps"
+                        className="block relative group"
                       >
                         <img
                           src={kskMapImg}
                           alt="KSK Healthcare Location Map - Doddanekundi, Bengaluru"
-                          loading="lazy"
-                          decoding="async"
-                          className="w-full h-[300px] md:h-[360px] object-cover rounded-t-xl group-hover:scale-105 transition-transform duration-300"
+                          className="w-full h-300 object-cover rounded-t-xl group-hover:scale-105 transition-transform duration-300"
                         />
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
-                          <div className="bg-white rounded-full p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow">
+                        <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
+                          <div className="bg-white rounded-full p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                             <MapPin className="h-6 w-6 text-green-600" />
                           </div>
                         </div>
@@ -1434,11 +1518,10 @@ const App = () => {
                           6B, Kote NCMR Building, Karthik Nagar Service Road, Outer Ring Rd, Doddanekundi, Bengaluru, Karnataka 560037
                         </p>
                         <a
-                          href="https://www.google.com/maps?q=KSK+Healthcare,+Doddanekundi,+Bengaluru&ll=12.9698,77.7499&z=17"
+                          href="https://maps.app.goo.gl/LfKjkmm7VcutWpE27"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center space-x-1 text-green-600 hover:text-green-700 text-sm mt-2"
-                          aria-label="Get directions to KSK Healthcare on Google Maps"
                         >
                           <MapPin className="h-4 w-4" />
                           <span>Get Directions</span>
@@ -1487,7 +1570,7 @@ const App = () => {
                       <img src="/logo.png" alt="KSK Logo" className="h-10 w-10 mr-2" />
                       <div>
                         <h3 className="text-xl font-bold">KSK Healthcare</h3>
-                        <p className="text-sm text-gray-400">Cure and Care with a Difference</p>
+                        <p className="text-sm text-gray-400">Holistic Wellness Center</p>
                       </div>
                     </div>
 

@@ -39,6 +39,11 @@ import BlogList from './pages/BlogList.jsx';
 import BookingConfirmationPage from './components/BookingConfirmationPage.jsx';
 import ChatbotAdmin from './components/admin/ChatbotAdmin.jsx';
 import AnalyticsDashboard from './components/AnalyticsDashboard.jsx';
+import LoginPage from './pages/LoginPage.jsx';
+import SignupPage from './pages/SignupPage.jsx';
+import AdminDashboard from './pages/AdminDashboard.jsx';
+import ProtectedRoute from './components/ProtectedRoute.jsx';
+import QuickBookingFormFirebase from './components/QuickBookingFormFirebase.jsx';
 import { Button } from './components/ui/button';
 import DoctorAvatar from './components/DoctorAvatar';
 import ChatBot from './components/ChatBot';
@@ -1560,8 +1565,23 @@ const App = () => {
         <Route path="/services/hearing-care" element={<HearingCareServicesPage />} />
         <Route path="/services/nutrition" element={<NutritionWellnessPage />} />
         <Route path="/booking-confirmation" element={<BookingConfirmationPage />} />
-        <Route path="/admin/chatbot" element={<ChatbotAdmin />} />
-        <Route path="/admin/analytics" element={<AnalyticsDashboard />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/admin" element={
+          <ProtectedRoute requireAdmin={true}>
+            <AdminDashboard />
+          </ProtectedRoute>
+        } />
+        <Route path="/admin/chatbot" element={
+          <ProtectedRoute requireAdmin={true}>
+            <ChatbotAdmin />
+          </ProtectedRoute>
+        } />
+        <Route path="/admin/analytics" element={
+          <ProtectedRoute requireAdmin={true}>
+            <AnalyticsDashboard />
+          </ProtectedRoute>
+        } />
       </Routes>
     </GoogleAnalyticsProvider>
   );

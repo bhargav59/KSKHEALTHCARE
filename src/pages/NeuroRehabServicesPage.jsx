@@ -178,7 +178,7 @@ const NeuroRehabServicesPage = () => {
         <div className="min-h-screen bg-white">
             <Helmet>
                 <title>Neuro-Functional Rehabilitation Services in Doddanekundi, Bengaluru | KSK Healthcare</title>
-                <meta name="description" content="Expert neuro-rehabilitation therapy in Doddanekundi, Bengaluru. ASD therapy, ADHD management, speech therapy, sensory integration & cognitive rehabilitation for children." />
+                <meta name="description" content="Expert neuro-rehabilitation in Doddanekundi for ASD, ADHD, speech therapy & sensory integration. Child development specialists. Government-certified!" />
                 <meta name="keywords" content="neuro rehabilitation Doddanekundi, ASD therapy Bengaluru, ADHD treatment, speech therapy, autism therapy, child development, KSK Healthcare" />
                 <meta name="geo.region" content="IN-KA" />
                 <meta name="geo.placename" content="Doddanekundi, Bengaluru" />

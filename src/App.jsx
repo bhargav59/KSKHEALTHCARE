@@ -501,6 +501,7 @@ const App = () => {
               <title>KSK Healthcare - World-Class Holistic Wellness Center in Doddanekundi, Bangalore</title>
               <meta name="description" content="Government-certified holistic healthcare in Doddanekundi, Bangalore. Expert Acupuncture, Ayurveda, Physiotherapy, Speech & Hearing Care. 12+ years excellence. Book consultation: +91-8884333439" />
               <meta name="keywords" content="KSK Healthcare Doddanekundi, holistic healthcare Bangalore, acupuncture near Marathahalli, ayurveda Whitefield, speech therapy Bangalore, physiotherapy Doddanekundi, hearing care Marathahalli" />
+               <link rel="preload" as="image" href={heroBanner} fetchpriority="high" />
             </Helmet>
 
             {/* Enhanced Schema Markup */}
@@ -804,6 +805,7 @@ const App = () => {
                       src={aboutBanner}
                       alt="About KSK Healthcare"
                       className="w-full aspect-[16/9] object-cover rounded-xl shadow-lg"
+                      loading="lazy"
                     />
                     <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 bg-white rounded-lg shadow-lg p-6">
                       <div className="text-2xl font-bold text-green-600 text-center">12+</div>
@@ -814,6 +816,7 @@ const App = () => {
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mb-12">
                   <div>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Story & Mission</h3>
                     <p className="text-lg text-gray-600 mb-6">
                       KSK Healthcare is a premier clinic in Bangalore, dedicated to providing Cure and Care with a Difference
                       world-class healthcare services that integrate traditional healing wisdom with modern medical practices.
@@ -825,7 +828,9 @@ const App = () => {
                     </p>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-6">Why Choose KSK Healthcare</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="flex items-start space-x-3">
                       <CheckCircle className="h-6 w-6 text-green-600 mt-1" />
                       <div>
@@ -853,6 +858,7 @@ const App = () => {
                         <h4 className="font-semibold text-gray-900">Personalized Care</h4>
                         <p className="text-sm text-gray-600">Customized treatment plans for each patient</p>
                       </div>
+                    </div>
                     </div>
                   </div>
                 </div>
@@ -998,6 +1004,7 @@ const App = () => {
                     Comprehensive holistic healthcare services designed to address your unique needs and
                     promote optimal wellness through traditional and modern healing approaches.
                   </p>
+                  <h3 className="text-xl font-semibold text-gray-800 mt-6">Traditional & Modern Healing Solutions</h3>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -1008,6 +1015,7 @@ const App = () => {
                           src={service.image}
                           alt={service.name}
                           className="w-full h-full object-cover"
+                          loading="lazy"
                         />
                         <div className="absolute top-4 left-4 bg-green-600 rounded-full p-2">
                           <service.icon className="h-6 w-6 text-white" />
@@ -1067,6 +1075,7 @@ const App = () => {
                       src={mainDoctor.image}
                       alt={`Photo of ${mainDoctor.name}`}
                       className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover mb-6"
+                      loading="lazy"
                     />
                     <h3 className="text-3xl font-bold text-gray-900 mb-2">{mainDoctor.name}</h3>
                     <p className="text-green-600 font-semibold mb-2">{mainDoctor.title}</p>
@@ -1099,7 +1108,8 @@ const App = () => {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
                       <div className="md:text-left">
-                        <h4 className="font-semibold text-gray-900 mb-3">Specializations</h4>
+                        <h3 className="text-lg font-bold text-gray-900 mb-3">Areas of Expertise</h3>
+                        <h4 className="font-semibold text-gray-700 mb-3">Specializations</h4>
                         <ul className="space-y-2">
                           {mainDoctor.specializations.map((spec, index) => (
                             <li key={index} className="flex items-center space-x-2">
@@ -1110,7 +1120,8 @@ const App = () => {
                         </ul>
                       </div>
                       <div className="md:text-left">
-                        <h4 className="font-semibold text-gray-900 mb-3">Achievements</h4>
+                        <h3 className="text-lg font-bold text-gray-900 mb-3">Professional Recognition</h3>
+                        <h4 className="font-semibold text-gray-700 mb-3">Achievements</h4>
                         <ul className="space-y-2">
                           {mainDoctor.achievements.map((ach, index) => (
                             <li key={index} className="flex items-center space-x-2">
@@ -1204,6 +1215,7 @@ const App = () => {
                   <div className="space-y-6">
                     <div className="bg-gray-50 rounded-xl p-6">
                       <h3 className="text-lg font-semibold text-gray-900 mb-4">Get in Touch</h3>
+                      <h3 className="text-base font-semibold text-gray-700 mb-4">Contact Details</h3>
 
                       <div className="space-y-6">
                         <div className="flex items-start space-x-4">
@@ -1408,10 +1420,10 @@ const App = () => {
                     </p>
                     <div className="flex space-x-4">
                       {[
-                        { Icon: Facebook, url: 'https://www.facebook.com/profile.php?id=61563837613811' },
-                        { Icon: Instagram, url: 'https://www.instagram.com/kskhealthcare/' },
-                        { Icon: Linkedin, url: 'https://www.linkedin.com/in/ksk-health-care-b067a0329/' },
-                        { Icon: Twitter, url: 'https://x.com/kskhealthcarein' },
+                        { Icon: Facebook, name: 'Facebook', url: 'https://www.facebook.com/profile.php?id=61563837613811' },
+                        { Icon: Instagram, name: 'Instagram', url: 'https://www.instagram.com/kskhealthcare/' },
+                        { Icon: Linkedin, name: 'LinkedIn', url: 'https://www.linkedin.com/in/ksk-health-care-b067a0329/' },
+                        { Icon: Twitter, name: 'X', url: 'https://x.com/kskhealthcarein' },
                       ].map((social, index) => (
                         <a
                           key={index}

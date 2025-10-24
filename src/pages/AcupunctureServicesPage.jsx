@@ -102,7 +102,7 @@ const AcupunctureServicesPage = () => {
         <div className="min-h-screen bg-white">
             <Helmet>
                 <title>Acupuncture Therapy Services in Doddanekundi, Bengaluru | KSK Healthcare</title>
-                <meta name="description" content="Expert acupuncture therapy services in Doddanekundi, Bengaluru. Specializing in chronic pain relief, neuro-acupuncture, auricular therapy & cosmetic acupuncture. Book consultation today." />
+                <meta name="description" content="Expert acupuncture in Doddanekundi Bangalore for pain relief, PCOD, fertility & stress. Traditional Chinese medicine with 12+ years experience. Book consultation today!" />
                 <meta name="keywords" content="acupuncture Doddanekundi, acupuncture Bengaluru, chronic pain relief, neuro-acupuncture, ear acupuncture, cosmetic acupuncture, KSK Healthcare" />
                 <meta name="geo.region" content="IN-KA" />
                 <meta name="geo.placename" content="Doddanekundi, Bengaluru" />

@@ -195,7 +195,7 @@ const AyurvedicServicesPage = () => {
         <div className="min-h-screen bg-white">
             <Helmet>
                 <title>Ayurvedic & Panchakarma Therapy in Doddanekundi, Bengaluru | KSK Healthcare</title>
-                <meta name="description" content="Authentic Ayurvedic & Panchakarma treatments in Doddanekundi, Bengaluru. Complete detox programs, Shirodhara, Abhyanga, Nasya therapy & traditional healing at KSK Healthcare." />
+                <meta name="description" content="Authentic Ayurveda & Panchakarma in Doddanekundi. Detox programs, Shirodhara, Abhyanga massage & traditional healing. Government-certified. Book today!" />
                 <meta name="keywords" content="Ayurveda Doddanekundi, Panchakarma Bengaluru, Shirodhara, Abhyanga, Ayurvedic massage, detox therapy, KSK Healthcare" />
                 <meta name="geo.region" content="IN-KA" />
                 <meta name="geo.placename" content="Doddanekundi, Bengaluru" />

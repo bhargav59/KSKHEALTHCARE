@@ -144,7 +144,7 @@ const HearingCareServicesPage = () => {
         <div className="min-h-screen bg-white">
             <Helmet>
                 <title>Hearing Care & Auditory Rehabilitation in Doddanekundi, Bengaluru | KSK Healthcare</title>
-                <meta name="description" content="Expert hearing care & auditory rehabilitation in Doddanekundi, Bengaluru. Hearing tests, hearing aids, tinnitus treatment, cochlear implant support & pediatric hearing services." />
+                <meta name="description" content="Expert hearing care in Doddanekundi. Hearing tests, aids fitting, tinnitus treatment & cochlear support. Certified audiologists. Government-approved!" />
                 <meta name="keywords" content="hearing care Doddanekundi, audiologist Bengaluru, hearing aids, tinnitus treatment, hearing test, cochlear implant, KSK Healthcare" />
                 <meta name="geo.region" content="IN-KA" />
                 <meta name="geo.placename" content="Doddanekundi, Bengaluru" />

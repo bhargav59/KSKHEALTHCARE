@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const BlogList = () => {
     const blogPosts = [
@@ -36,6 +37,11 @@ const BlogList = () => {
 
     return (
         <div className="min-h-screen bg-gray-100 py-20">
+            <Helmet>
+                <title>Healthcare Blog | KSK Healthcare Doddanekundi - Holistic Health Tips & Insights</title>
+                <meta name="description" content="Expert healthcare blog on Acupuncture, Ayurveda, Nutrition & Wellness. Get holistic health tips from KSK Healthcare's certified practitioners in Bangalore!" />
+                <meta name="keywords" content="healthcare blog Bangalore, acupuncture tips, ayurveda guide, nutrition advice, wellness blog Doddanekundi, KSK Healthcare" />
+            </Helmet>
             <div className="max-w-4xl mx-auto px-4">
                 <h1 className="text-4xl font-bold text-gray-800 mb-10 text-center">Our Blog Posts</h1>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

@@ -150,7 +150,7 @@ const NutritionWellnessPage = () => {
         <div className="min-h-screen bg-white">
             <Helmet>
                 <title>Nutrition & Wellness Services in Doddanekundi, Bengaluru | KSK Healthcare</title>
-                <meta name="description" content="Expert nutrition & wellness services in Doddanekundi, Bengaluru. Clinical nutrition, weight management, sports nutrition, pediatric nutrition & women's health by certified dietitians." />
+                <meta name="description" content="Expert nutrition in Doddanekundi. Weight management, diabetes diet, PCOD nutrition & sports nutrition by certified dietitians. Government-approved clinic!" />
                 <meta name="keywords" content="nutritionist Doddanekundi, dietitian Bengaluru, weight loss, diabetes nutrition, PCOD diet, sports nutrition, clinical nutrition, KSK Healthcare" />
                 <meta name="geo.region" content="IN-KA" />
                 <meta name="geo.placename" content="Doddanekundi, Bengaluru" />

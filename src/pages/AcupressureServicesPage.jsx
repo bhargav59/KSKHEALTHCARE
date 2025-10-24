@@ -124,7 +124,7 @@ const AcupressureServicesPage = () => {
         <div className="min-h-screen bg-white">
             <Helmet>
                 <title>Acupressure & Reflexology Services in Doddanekundi, Bengaluru | KSK Healthcare</title>
-                <meta name="description" content="Expert acupressure & reflexology therapy in Doddanekundi, Bengaluru. Traditional pressure point massage, foot reflexology, Sujok therapy & Marma therapy for stress relief & pain management." />
+                <meta name="description" content="Expert acupressure & reflexology in Doddanekundi. Pressure point massage, Sujok therapy & Marma for stress relief. Government-certified. Book now!" />
                 <meta name="keywords" content="acupressure Doddanekundi, reflexology Bengaluru, pressure point massage, Sujok therapy, Marma therapy, stress relief, KSK Healthcare" />
                 <meta name="geo.region" content="IN-KA" />
                 <meta name="geo.placename" content="Doddanekundi, Bengaluru" />

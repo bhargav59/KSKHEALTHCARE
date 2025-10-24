@@ -48,6 +48,8 @@ import PatientSuccessStories from './components/PatientSuccessStories';
 import QuickBookingForm from './components/QuickBookingForm';
 import SymptomChecker from './components/SymptomChecker';
 import GoogleAnalyticsProvider from './components/GoogleAnalyticsProvider';
+import SchemaMarkup from './components/SchemaMarkup';
+import FloatingContactButtons from './components/FloatingContactButtons';
 import { CHATBOT_CONFIG } from './config/chatbot';
 import { useCTATracking, usePhoneTracking } from './hooks/useAnalytics';
 
@@ -496,120 +498,13 @@ const App = () => {
         <Route path="/" element={
           <div className="min-h-screen bg-white">
             <Helmet>
-              <title>KSK Healthcare | Cure and Care with a Difference in Bangalore</title>
-              <meta name="description" content="Discover world-class holistic healthcare in Bangalore at KSK Healthcare. We blend ancient wisdom with modern techniques like Acupuncture, Ayurveda, and Speech Therapy for your optimal wellness." />
-              <meta name="keywords" content="holistic healthcare, Bangalore, acupuncture, ayurveda, panchakarma, speech therapy, neuro-rehab, hearing care, nutrition, wellness center" />
-
-              {/* Local Business Schema Markup */}
-              <script type="application/ld+json">
-                {JSON.stringify({
-                  "@context": "https://schema.org",
-                  "@type": "MedicalClinic",
-                  "name": "KSK Healthcare",
-                  "alternateName": "KSK Healthcare - Cure and Care with a Difference",
-                  "description": "Premier clinic in Bangalore offering Acupuncture, Ayurveda, Speech Therapy, Neuro-Rehabilitation, and comprehensive healthcare services. Cure and Care with a Difference.",
-                  "url": "https://kskhealthcare.in",
-                  "logo": "https://kskhealthcare.in/logo.png",
-                  "image": "https://kskhealthcare.in/assets/new-hero-banner.jpg",
-                  "telephone": "+91-88843-33439",
-                  "email": "kskhealthcare.in@gmail.com",
-                  "foundingDate": "2012",
-                  "address": {
-                    "@type": "PostalAddress",
-                    "streetAddress": "6B, Kote NCMR Building, Karthik Nagar Service Road, Outer Ring Rd",
-                    "addressLocality": "Doddanekundi",
-                    "addressRegion": "Karnataka",
-                    "postalCode": "560037",
-                    "addressCountry": "IN"
-                  },
-                  "geo": {
-                    "@type": "GeoCoordinates",
-                    "latitude": "12.9698",
-                    "longitude": "77.7499"
-                  },
-                  "openingHoursSpecification": [
-                    {
-                      "@type": "OpeningHoursSpecification",
-                      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-                      "opens": "09:00",
-                      "closes": "19:00"
-                    }
-                  ],
-                  "priceRange": "$$",
-                  "currenciesAccepted": "INR",
-                  "paymentAccepted": "Cash, Card, UPI, Net Banking",
-                  "medicalSpecialty": [
-                    "Acupuncture",
-                    "Ayurveda",
-                    "Speech Therapy",
-                    "Physiotherapy",
-                    "Audiology",
-                    "Neuro-Rehabilitation",
-                    "Holistic Medicine"
-                  ],
-                  "physician": [
-                    {
-                      "@type": "Physician",
-                      "name": "Dr. Gandrajupalli Swetha",
-                      "jobTitle": "Founder Director & Head – Neuro-Speech, Hearing & Acupuncture Dept.",
-                      "medicalSpecialty": ["Neuro-Speech Disorders", "Hearing Aid Fitting", "Neuro-Acupuncture"],
-                      "hasCredential": "Ph.D. in Neuro-Acupuncture, M.Sc. Speech-Language Pathology & Audiology"
-                    },
-                    {
-                      "@type": "Physician",
-                      "name": "Dr. Maheshwarswami K. H",
-                      "jobTitle": "Senior Ayurvedic Physician",
-                      "medicalSpecialty": ["Ayurveda", "Panchakarma", "Pain Management"],
-                      "hasCredential": "MD (Ayurveda), Member – AYUSH"
-                    }
-                  ],
-                  "aggregateRating": {
-                    "@type": "AggregateRating",
-                    "ratingValue": "4.9",
-                    "reviewCount": "350",
-                    "bestRating": "5",
-                    "worstRating": "1"
-                  },
-                  "review": [
-                    {
-                      "@type": "Review",
-                      "author": {
-                        "@type": "Person",
-                        "name": "Dr. Aparna"
-                      },
-                      "reviewRating": {
-                        "@type": "Rating",
-                        "ratingValue": "5",
-                        "bestRating": "5"
-                      },
-                      "reviewBody": "Aarohi, my daughter, has learnt some dialogues from her brother Abhimanyu's role in drama. It's a miraculous journey that she is able to speak so fluently. Very grateful to you Dr. Swetha and your team."
-                    },
-                    {
-                      "@type": "Review",
-                      "author": {
-                        "@type": "Person",
-                        "name": "Ramesh Kumar"
-                      },
-                      "reviewRating": {
-                        "@type": "Rating",
-                        "ratingValue": "5",
-                        "bestRating": "5"
-                      },
-                      "reviewBody": "For years, I suffered from debilitating back pain. After just a few sessions of acupuncture at KSK Healthcare, I feel like a new person. The relief is incredible, and the team is so supportive and knowledgeable."
-                    }
-                  ],
-                  "sameAs": [
-                    "https://www.facebook.com/profile.php?id=61563837613811",
-                    "https://www.instagram.com/kskhealthcare/",
-                    "https://www.linkedin.com/in/ksk-health-care-b067a0329/",
-                    "https://x.com/kskhealthcarein"
-                  ],
-                  "hasMap": "https://maps.app.goo.gl/LfKjkmm7VcutWpE27",
-                  "isAcceptingNewPatients": true,
-                  "smokingPolicy": "https://schema.org/ProhibitedSmoking"
-                })}
-              </script>
+              <title>KSK Healthcare - World-Class Holistic Wellness Center in Doddanekundi, Bangalore</title>
+              <meta name="description" content="Government-certified holistic healthcare in Doddanekundi, Bangalore. Expert Acupuncture, Ayurveda, Physiotherapy, Speech & Hearing Care. 12+ years excellence. Book consultation: +91-8884333439" />
+              <meta name="keywords" content="KSK Healthcare Doddanekundi, holistic healthcare Bangalore, acupuncture near Marathahalli, ayurveda Whitefield, speech therapy Bangalore, physiotherapy Doddanekundi, hearing care Marathahalli" />
             </Helmet>
+
+            {/* Enhanced Schema Markup */}
+            <SchemaMarkup />
             {/* Header */}
             <header className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-50">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1618,16 +1513,8 @@ const App = () => {
               </div>
             </footer>
 
-            {/* Floating WhatsApp Button */}
-            <div className="fixed bottom-6 right-6 z-50">
-              <WhatsAppButton
-                message="Hello KSK Healthcare, I would like to get in touch with you."
-                className="bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 flex items-center justify-center"
-              >
-                <MessageCircle className="h-6 w-6" />
-                <span className="sr-only">Contact us on WhatsApp</span>
-              </WhatsAppButton>
-            </div>
+            {/* Enhanced Floating Contact Buttons */}
+            <FloatingContactButtons />
 
             {/* Mobile Sticky Buttons */}
             <MobileStickyButtons />

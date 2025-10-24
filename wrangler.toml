@@ -1,0 +1,35 @@
+name = "kskhealthcare-api"
+main = "workers/worker.js"
+compatibility_date = "2025-01-24"
+# Required when using API tokens (recommended for headless/dev containers)
+# Find your Account ID in Cloudflare Dashboard > Workers & Pages > Settings
+account_id = "YOUR_ACCOUNT_ID_HERE"
+
+# KV Namespaces for data storage
+[[kv_namespaces]]
+binding = "APPOINTMENTS"
+id = "your-kv-namespace-id-1"
+
+[[kv_namespaces]]
+binding = "USERS"
+id = "your-kv-namespace-id-2"
+
+[[kv_namespaces]]
+binding = "TESTIMONIALS"
+id = "your-kv-namespace-id-3"
+
+# D1 Database (optional, for relational data)
+# Uncomment when you create D1 database
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "kskhealthcare-db"
+# database_id = "your-database-id"
+
+# Environment variables
+[vars]
+JWT_SECRET = "your-jwt-secret-key-change-this"
+ADMIN_EMAIL = "admin@kskhealthcare.in"
+
+# CORS settings
+[env.production]
+ALLOWED_ORIGINS = "https://kskhealthcare.pages.dev,https://your-domain.com"

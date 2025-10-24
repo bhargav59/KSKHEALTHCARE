@@ -1,16 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-  onAuthStateChanged,
-  sendPasswordResetEmail,
-  updateProfile,
-  GoogleAuthProvider,
-  signInWithPopup
-} from 'firebase/auth';
-import { doc, setDoc, getDoc } from 'firebase/firestore';
-import { auth, db } from '../config/firebase';
+import apiClient from '../services/api-client';
 
 const AuthContext = createContext();
 
@@ -27,125 +16,76 @@ export const AuthProvider = ({ children }) => {
   const [userRole, setUserRole] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // Check authentication on mount
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        if (apiClient.auth.isAuthenticated()) {
+          const user = await apiClient.auth.getCurrentUser();
+          setCurrentUser(user);
+          setUserRole(user.role);
+        }
+      } catch (error) {
+        console.error('Auth check failed:', error);
+        setCurrentUser(null);
+        setUserRole(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    checkAuth();
+  }, []);
+
   // Sign up with email and password
   const signup = async (email, password, userData) => {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    const user = userCredential.user;
-
-    // Update profile with display name
-    if (userData.name) {
-      await updateProfile(user, {
-        displayName: userData.name
-      });
-    }
-
-    // Create user document in Firestore
-    await setDoc(doc(db, 'users', user.uid), {
-      uid: user.uid,
-      email: email,
-      name: userData.name || '',
-      phone: userData.phone || '',
-      role: 'patient', // Default role
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString()
-    });
-
-    return userCredential;
+    const response = await apiClient.auth.signup(
+      email,
+      password,
+      userData.name,
+      userData.phone
+    );
+    
+    setCurrentUser(response.user);
+    setUserRole(response.user.role);
+    
+    return response;
   };
 
   // Sign in with email and password
   const login = async (email, password) => {
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    return userCredential;
-  };
-
-  // Sign in with Google
-  const signInWithGoogle = async () => {
-    const provider = new GoogleAuthProvider();
-    const userCredential = await signInWithPopup(auth, provider);
-    const user = userCredential.user;
-
-    // Check if user document exists
-    const userDoc = await getDoc(doc(db, 'users', user.uid));
+    const response = await apiClient.auth.login(email, password);
     
-    if (!userDoc.exists()) {
-      // Create user document for new Google sign-in users
-      await setDoc(doc(db, 'users', user.uid), {
-        uid: user.uid,
-        email: user.email,
-        name: user.displayName || '',
-        phone: '',
-        role: 'patient',
-        photoURL: user.photoURL || '',
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString()
-      });
-    }
-
-    return userCredential;
+    setCurrentUser(response.user);
+    setUserRole(response.user.role);
+    
+    return response;
   };
 
   // Logout
-  const logout = () => {
-    return signOut(auth);
-  };
-
-  // Reset password
-  const resetPassword = (email) => {
-    return sendPasswordResetEmail(auth, email);
-  };
-
-  // Update user profile
-  const updateUserProfile = async (updates) => {
-    if (currentUser) {
-      await updateProfile(currentUser, updates);
-      
-      // Update Firestore document
-      await setDoc(doc(db, 'users', currentUser.uid), {
-        ...updates,
-        updatedAt: new Date().toISOString()
-      }, { merge: true });
-    }
-  };
-
-  // Get user role from Firestore
-  const fetchUserRole = async (user) => {
-    if (user) {
-      try {
-        const userDoc = await getDoc(doc(db, 'users', user.uid));
-        if (userDoc.exists()) {
-          const role = userDoc.data().role || 'patient';
-          setUserRole(role);
-          return role;
-        }
-      } catch (error) {
-        console.error('Error fetching user role:', error);
-      }
-    }
+  const logout = async () => {
+    await apiClient.auth.logout();
+    setCurrentUser(null);
     setUserRole(null);
-    return null;
   };
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      setCurrentUser(user);
-      if (user) {
-        await fetchUserRole(user);
-      } else {
-        setUserRole(null);
-      }
-      setLoading(false);
-    });
+  // Reset password (placeholder - needs backend implementation)
+  const resetPassword = async (email) => {
+    // TODO: Implement password reset endpoint in Workers
+    throw new Error('Password reset not yet implemented');
+  };
 
-    return unsubscribe;
-  }, []);
+  // Update user profile (placeholder - needs backend implementation)
+  const updateUserProfile = async (updates) => {
+    // TODO: Implement user profile update endpoint in Workers
+    throw new Error('Profile update not yet implemented');
+  };
 
   const value = {
     currentUser,
     userRole,
     signup,
     login,
-    signInWithGoogle,
     logout,
     resetPassword,
     updateUserProfile,
@@ -160,3 +100,4 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+

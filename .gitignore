@@ -7,3 +7,47 @@ node_modules
 .kiro/steering/byterover-rules.md
 .qoder/rules/byterover-rules.md
 .augment/rules/byterover-rules.md
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment variables
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Temporary files
+*.tmp
+*.temp
+
+# Screenshot files (these should not be committed in the future)
+Screenshot*.png
+**/*Screenshot*.png
+
+# IDE files
+.vscode/*
+.idea/*
+*.swp
+*.swo
+
+# Build outputs (Note: Currently some dist files exist in the repo but should ideally be built on deployment)
+dist/
+build/
+dist-*/
+output/
+
+# Archive and PDF files
+*.zip
+*.tar
+*.gz
+*.pdf

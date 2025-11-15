@@ -1,12 +1,12 @@
 import React from 'react';
-import MapEmbed from '../components/MapEmbed';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import {
     Phone, Mail, MapPin, Clock, Star, ArrowLeft, CheckCircle, Award,
     Activity, Shield, Target, Zap, MessageCircle, Calendar, Leaf, Heart,
-    Droplets, Wind, Sun, Moon
+    Droplets, Wind, Sun, Moon, ExternalLink
 } from 'lucide-react';
+import SimpleMapRedirect from '../components/SimpleMapRedirect';
 
 const AyurvedicServicesPage = () => {
     // Business contact info
@@ -495,24 +495,12 @@ const AyurvedicServicesPage = () => {
                             </div>
                         </div>
 
-                        {/* Google Map */}
-                        <div className="bg-gray-100 rounded-xl overflow-hidden aspect-[3/2]">
-                            <MapEmbed title="KSK Healthcare - Ayurvedic & Panchakarma Center in Doddanekundi, Bengaluru" height={400} className="rounded-xl" />
-                            <div className="p-4 bg-white">
-                                <h4 className="font-semibold text-gray-900 mb-2">KSK Healthcare - Doddanekundi</h4>
-                                <p className="text-sm text-gray-600 mb-2">
-                                    Authentic Ayurvedic & Panchakarma Treatment Center in Bengaluru
-                                </p>
-                                <a
-                                    href="https://maps.app.goo.gl/LfKjkmm7VcutWpE27"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center space-x-1 text-green-600 hover:text-green-700 text-sm"
-                                >
-                                    <MapPin className="h-4 w-4" />
-                                    <span>Get Directions</span>
-                                </a>
-                            </div>
+                        {/* Simple Map Redirect */}
+                        <div className="bg-gray-100 rounded-xl overflow-hidden">
+                            <SimpleMapRedirect
+                                title="KSK Healthcare - Ayurvedic & Panchakarma Center in Doddanekundi, Bengaluru"
+                                height={400}
+                            />
                         </div>
                     </div>
                 </div>

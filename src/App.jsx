@@ -6,7 +6,7 @@ import {
   Send, Facebook, Instagram, Linkedin, Youtube, Menu, X, ChevronDown,
   Users, Award, Calendar, CheckCircle, ArrowRight,
   Activity, Shield, Target, Zap, Brain, Leaf,
-  Twitter
+  Twitter, ExternalLink
 } from 'lucide-react';
 import './App.css';
 
@@ -23,7 +23,10 @@ import reflexologyImg from './assets/reflexology.jpg';
 import nutritionDietImg from './assets/nutrients.png';
 
 //import homeopathyImg from './assets/homeopathy.jpg';
-import kskMapImg from './assets/ksk-map.jpg'; // Added kskMapImg
+
+// Components
+import SimpleMapRedirect from './components/SimpleMapRedirect';
+
 // New doctor images
 import drNishibhaImg from './assets/dr-nishibha.jpg';
 import mrsGayathriImg from './assets/mrs-gayathri.jpg';
@@ -737,18 +740,6 @@ const App = () => {
             <section className="py-16 bg-gray-50">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Government Registration Banner */}
-                <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-8 text-center">
-                  <div className="flex items-center justify-center space-x-2 mb-2">
-                    <Shield className="h-5 w-5 text-green-600" />
-                    <span className="text-green-800 font-semibold text-lg">
-                      Government Registered Clinic – Safe and Trusted Since 2012
-                    </span>
-                  </div>
-                  <p className="text-green-700 text-sm">
-                    Certified by RCI, AYUSH Ministry & ISO Standards for Quality Healthcare
-                  </p>
-                </div>
-
                 {/* Prominent Patient Rating */}
                 <div className="text-center mb-8">
                   <div className="inline-flex items-center space-x-3 bg-white rounded-full px-6 py-3 shadow-lg border">
@@ -822,14 +813,11 @@ const App = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mb-12">
                   <div>
                     <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Story & Mission</h3>
-                    <p className="text-lg text-gray-600 mb-6">
-                      KSK Healthcare is a premier clinic in Bangalore, dedicated to providing Cure and Care with a Difference
-                      world-class healthcare services that integrate traditional healing wisdom with modern medical practices.
+                    <p className="text-lg text-gray-600 mb-6" align="justify">
+                      KSK Health Care offers a wide range of holistic and integrative therapies designed to support individuals of all ages. Our expert team combines traditional healing techniques such as acupuncture, Panchakarma, and acupressure with modern approaches in neuro-functional rehabilitation, nutrition, and hearing care. We create personalized treatment plans that address chronic pain, neurological and sensory challenges, and overall health, all without relying on drugs or surgery.
                     </p>
-                    <p className="text-gray-600 mb-8">
-                      Founded with a vision to make holistic healthcare accessible to everyone, we offer a comprehensive
-                      range of services including Acupuncture, Ayurveda, Speech Therapy, and various traditional healing
-                      modalities. Our team of experienced practitioners is committed to your journey towards optimal health and wellness.
+                    <p className="text-gray-600 mb-8" align="justify">
+                      Our approach emphasizes personalized care and natural healing. We provide therapies like neuro-acupuncture, deep detoxification Panchakarma, cognitive and behavioral rehabilitation, and comprehensive hearing evaluations. Alongside, we offer tailored nutrition consultations and diagnostic lab tests to ensure precise, effective care. At KSK Health Care, our goal is to restore balance, enhance vitality, and promote physical, mental, and emotional well-being in a compassionate environment.
                     </p>
                   </div>
 
@@ -1005,9 +993,8 @@ const App = () => {
                   <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                     Our <span className="text-green-600">Services</span>
                   </h2>
-                  <p className="text-gray-600 max-w-3xl mx-auto">
-                    Comprehensive holistic healthcare services designed to address your unique needs and
-                    promote optimal wellness through traditional and modern healing approaches.
+                  <p className="text-gray-600 max-w-3xl mx-auto" align="justify">
+                    About KSK Healthcare KSK Health Care offers a wide range of holistic and integrative therapies designed to support individuals of all ages. Our expert team combines traditional healing techniques such as acupuncture, Panchakarma, and acupressure with modern approaches in neuro-functional rehabilitation, nutrition, and hearing care. We create personalized treatment plans that address chronic pain, neurological and sensory challenges, and overall health, all without relying on drugs or surgery. 
                   </p>
                   <h3 className="text-xl font-semibold text-gray-800 mt-6">Traditional & Modern Healing Solutions</h3>
                 </div>
@@ -1200,7 +1187,9 @@ const App = () => {
             </section>
 
             {/* Patient Success Stories Section */}
-            <PatientSuccessStories />
+            <section id="testimonials">
+              <PatientSuccessStories />
+            </section>
 
             {/* Contact Section */}
             <section id="contact" className="py-20 bg-white">
@@ -1314,49 +1303,11 @@ const App = () => {
 
                   {/* Map and Additional Info */}
                   <div className="space-y-6">
-                    {/* Clickable Map Image */}
-                    <div className="bg-gray-100 rounded-xl overflow-hidden">
-                      <a
-                        href="https://www.google.com/maps?q=KSK+Healthcare,+Doddanekundi,+Bengaluru&ll=12.9698,77.7499&z=17"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block relative group cursor-pointer"
-                        aria-label="Open Google Maps location for KSK Healthcare in a new tab"
-                        title="Open in Google Maps"
-                      >
-                        <img
-                          src={kskMapImg}
-                          alt="KSK Healthcare Location Map - Doddanekundi, Bengaluru"
-                          loading="lazy"
-                          decoding="async"
-                          className="w-full h-[300px] md:h-[360px] object-cover rounded-t-xl group-hover:scale-105 transition-transform duration-300"
-                        />
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
-                          <div className="bg-white rounded-full p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow">
-                            <MapPin className="h-6 w-6 text-green-600" />
-                          </div>
-                        </div>
-                      </a>
-                      <div className="p-4 bg-white">
-                        <h4 className="font-semibold text-gray-900 mb-2">Visit Our Clinic</h4>
-                        <p className="text-sm text-gray-600 mb-2">
-                          <strong>KSK Healthcare</strong> - Acupuncture & Holistic Wellness in Bengaluru
-                        </p>
-                        <p className="text-sm text-gray-600">
-                          6B, Kote NCMR Building, Karthik Nagar Service Road, Outer Ring Rd, Doddanekundi, Bengaluru, Karnataka 560037
-                        </p>
-                        <a
-                          href="https://www.google.com/maps?q=KSK+Healthcare,+Doddanekundi,+Bengaluru&ll=12.9698,77.7499&z=17"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center space-x-1 text-green-600 hover:text-green-700 text-sm mt-2"
-                          aria-label="Get directions to KSK Healthcare on Google Maps"
-                        >
-                          <MapPin className="h-4 w-4" />
-                          <span>Get Directions</span>
-                        </a>
-                      </div>
-                    </div>
+                    {/* Simple Map Redirect Component */}
+                    <SimpleMapRedirect
+                      title="KSK Healthcare - Doddanekundi, Bengaluru"
+                      height={360}
+                    />
 
                     {/* Social Media */}
                     <div className="bg-gray-50 rounded-xl p-6">
@@ -1400,22 +1351,6 @@ const App = () => {
                       <div>
                         <h3 className="text-xl font-bold">KSK Healthcare</h3>
                         <p className="text-sm text-gray-400">Cure and Care with a Difference</p>
-                      </div>
-                    </div>
-
-                    {/* Trust Banner */}
-                    <div className="bg-green-900 border border-green-700 rounded-lg p-3 mb-4">
-                      <div className="flex items-center space-x-2 mb-1">
-                        <Shield className="h-4 w-4 text-green-400" />
-                        <span className="text-green-400 font-semibold text-sm">
-                          Government Registered Clinic – Safe and Trusted Since 2012
-                        </span>
-                      </div>
-                      <div className="flex flex-wrap gap-2 text-xs">
-                        <span className="bg-green-800 px-2 py-1 rounded">RCI Certified</span>
-                        <span className="bg-green-800 px-2 py-1 rounded">AYUSH Registered</span>
-                        <span className="bg-green-800 px-2 py-1 rounded">SSL Secured</span>
-                        <span className="bg-green-800 px-2 py-1 rounded">ISO Standards</span>
                       </div>
                     </div>
 
@@ -1491,21 +1426,6 @@ const App = () => {
                       <div className="flex items-center space-x-2">
                         <Clock className="h-4 w-4" />
                         <span>Mon-Sun: 9:00 AM - 7:00 PM</span>
-                      </div>
-                    </div>
-
-                    {/* SSL and Security Badges */}
-                    <div className="mt-4 pt-4 border-t border-gray-700">
-                      <h5 className="text-sm font-semibold mb-2">Security & Trust</h5>
-                      <div className="flex flex-wrap gap-1">
-                        <div className="bg-gray-800 px-2 py-1 rounded text-xs flex items-center space-x-1">
-                          <CheckCircle className="h-3 w-3 text-green-400" />
-                          <span>SSL Secured</span>
-                        </div>
-                        <div className="bg-gray-800 px-2 py-1 rounded text-xs flex items-center space-x-1">
-                          <Shield className="h-3 w-3 text-green-400" />
-                          <span>Data Protected</span>
-                        </div>
                       </div>
                     </div>
                   </div>

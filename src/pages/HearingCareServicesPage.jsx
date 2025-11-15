@@ -1,12 +1,12 @@
 import React from 'react';
-import MapEmbed from '../components/MapEmbed';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import {
     Phone, Mail, MapPin, Clock, Star, ArrowLeft, CheckCircle, Award,
     Activity, Shield, Target, Zap, MessageCircle, Calendar, Volume2,
-    Ear, Headphones, VolumeX, Settings, Heart, Users
+    Ear, Headphones, VolumeX, Settings, Heart, Users, ExternalLink
 } from 'lucide-react';
+import SimpleMapRedirect from '../components/SimpleMapRedirect';
 
 const HearingCareServicesPage = () => {
     // Business contact info
@@ -468,23 +468,11 @@ const HearingCareServicesPage = () => {
                         </div>
 
                         {/* Google Map */}
-                        <div className="bg-gray-100 rounded-xl overflow-hidden aspect-[3/2]">
-                            <MapEmbed title="KSK Healthcare - Hearing Care & Auditory Rehabilitation in Doddanekundi, Bengaluru" height={400} className="rounded-xl" />
-                            <div className="p-4 bg-white">
-                                <h4 className="font-semibold text-gray-900 mb-2">KSK Healthcare - Doddanekundi</h4>
-                                <p className="text-sm text-gray-600 mb-2">
-                                    Expert Hearing Care & Auditory Rehabilitation Center in Bengaluru
-                                </p>
-                                <a
-                                    href="https://maps.app.goo.gl/LfKjkmm7VcutWpE27"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center space-x-1 text-orange-600 hover:text-orange-700 text-sm"
-                                >
-                                    <MapPin className="h-4 w-4" />
-                                    <span>Get Directions</span>
-                                </a>
-                            </div>
+                        <div className="bg-gray-100 rounded-xl overflow-hidden">
+                            <SimpleMapRedirect
+                                title="KSK Healthcare - Hearing Care & Auditory Rehabilitation in Doddanekundi, Bengaluru"
+                                height={400}
+                            />
                         </div>
                     </div>
                 </div>

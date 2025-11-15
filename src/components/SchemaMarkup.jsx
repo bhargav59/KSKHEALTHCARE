@@ -5,11 +5,11 @@ const SchemaMarkup = () => {
   // LocalBusiness + MedicalBusiness Schema
   const localBusinessSchema = {
     "@context": "https://schema.org",
-    "@type": ["MedicalBusiness", "MedicalClinic", "HealthAndBeautyBusiness"],
+    "@type": "MedicalClinic",
     "@id": "https://kskhealthcare.in/#organization",
     "name": "KSK Healthcare",
-    "alternateName": "KSK Health Care",
-    "description": "Government-certified holistic wellness center in Doddanekundi offering acupuncture, Ayurveda, physiotherapy, speech therapy & hearing care. 12+ years serving Bangalore with expert doctors.",
+    "alternateName": "KSK Healthcare - Cure and Care with a Difference",
+    "description": "Premier clinic in Bangalore offering Acupuncture, Ayurveda, Speech Therapy, Neuro-Rehabilitation, and comprehensive healthcare services. Cure and Care with a Difference.",
     "url": "https://kskhealthcare.in",
     "logo": {
       "@type": "ImageObject",
@@ -17,10 +17,7 @@ const SchemaMarkup = () => {
       "width": 250,
       "height": 250
     },
-    "image": [
-      "https://kskhealthcare.in/src/assets/new-hero-banner.jpg",
-      "https://kskhealthcare.in/src/assets/about-banner.png"
-    ],
+    "image": "https://kskhealthcare.in/assets/new-hero-banner.jpg",
     "telephone": "+91-8884333439",
     "alternativeTelephone": "+91-9900546089",
     "email": "kskhealthcare.in@gmail.com",
@@ -37,8 +34,8 @@ const SchemaMarkup = () => {
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": "12.9903",
-      "longitude": "77.6949"
+      "latitude": "12.9698",
+      "longitude": "77.7499"
     },
     "openingHoursSpecification": [
       {
@@ -57,8 +54,8 @@ const SchemaMarkup = () => {
         "@type": "GeoCircle",
         "geoMidpoint": {
           "@type": "GeoCoordinates",
-          "latitude": "12.9903",
-          "longitude": "77.6949"
+          "latitude": "12.9698",
+          "longitude": "77.7499"
         },
         "geoRadius": "10000"
       }
@@ -155,7 +152,7 @@ const SchemaMarkup = () => {
       "https://www.linkedin.com/company/kskhealthcare",
       "https://www.youtube.com/@kskhealthcare"
     ],
-    "hasMap": "https://www.google.com/maps?q=KSK+Healthcare,+Doddanekundi,+Bengaluru",
+    "hasMap": "https://www.google.com/maps?q=KSK+Healthcare,+Doddanekundi,+Bengaluru&ll=12.9698,77.7499&z=17",
     "amenityFeature": [
       {
         "@type": "LocationFeatureSpecification",
@@ -187,7 +184,7 @@ const SchemaMarkup = () => {
       "Holistic Healthcare"
     ],
     "slogan": "Cure and Care with a Difference",
-    "foundingDate": "2013",
+    "foundingDate": "2012",
     "additionalType": [
       "https://schema.org/MedicalOrganization",
       "https://schema.org/LocalBusiness"

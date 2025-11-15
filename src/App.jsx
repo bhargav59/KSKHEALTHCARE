@@ -46,14 +46,12 @@ import LoginPage from './pages/LoginPage.jsx';
 import SignupPage from './pages/SignupPage.jsx';
 import AdminDashboard from './pages/AdminDashboard.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
-import QuickBookingFormFirebase from './components/QuickBookingFormFirebase.jsx';
 import { Button } from './components/ui/button';
 import DoctorAvatar from './components/DoctorAvatar';
 import ChatBot from './components/ChatBot';
 import ChatbotIntegration from './components/ChatbotIntegration';
 import MobileStickyButtons from './components/MobileStickyButtons';
 import PatientSuccessStories from './components/PatientSuccessStories';
-import QuickBookingForm from './components/QuickBookingForm';
 import SymptomChecker from './components/SymptomChecker';
 import GoogleAnalyticsProvider from './components/GoogleAnalyticsProvider';
 import SchemaMarkup from './components/SchemaMarkup';
@@ -170,7 +168,7 @@ const App = () => {
       id: 6,
       name: 'Nutrition & Wellness',
       description: 'Personalized diet plans that treat food as medicine to support healing, immunity and vitality.',
-      benefits: ['Weight Management', 'Metabolic Health', 'Enhanced Immunity', 'Energy & Vitality'],
+      types: ['Metabolic & Lifestyle Disorders', 'Gut Health', 'Neurodevelopmental Support', 'Women\'s Health', 'Pain & Inflammation', 'Immune System Support'],
       image: nutritionDietImg,
       icon: Heart,
       blogPath: '/services/nutrition'
@@ -182,22 +180,28 @@ const App = () => {
     {
       id: 1,
       name: 'Dr. Gandrajupalli Swetha',
-      title: 'Founder Director & Head – Neuro-Speech, Hearing & Acupuncture Dept.',
-      qualification: 'Ph.D. in Neuro-Acupuncture | M.Sc. Speech-Language Pathology & Audiology | Certified Functional Medicine Practitioner',
+      title: 'Founder & Lead Practitioner',
+      qualification: 'Ph.D. (Neuro-Acupuncture) | M.Sc. (Speech-Language Pathology & Audiology) | Certified Functional Medicine Practitioner',
       experience: '12+ years',
       specializations: [
         'Neuro-Speech & Language Disorders',
-        'Hearing Aid Trial, Fitting & Aural Rehabilitation',
-        'Functional Medicine & Integrative Health',
-        'Neuro-Acupuncture & Acupressure',
-        'Holistic Multimodal Therapy (All Age Groups)'
+        'Hearing Evaluation & Aural Rehabilitation',
+        'Neuro-Acupuncture & Acupressure for Brain Development',
+        'Functional Nutrition for Brain & Cognitive Health',
+        'Multimodal Therapy for ADHD, Autism & Speech Delay',
+        'Functional Rehabilitation & Brain Stimulation',
+        'Stroke & Neuro-Rehabilitation (All Ages)',
+        'Holistic Integration of Speech, Acupuncture & Nutrition'
       ],
       achievements: [
         'Gold Medalist – Academic Excellence',
         'RCI-Certified Speech-Language Pathologist & Audiologist',
-        'Published researcher – National & International journals',
+        'Researcher – National & International Journals',
         'Ph.D. in Neuro-Acupuncture',
-        'Certified Functional Medicine Specialist'
+        'Certified Functional Nutrition Specialist',
+        'Founder – KSK Health Care & Swadhma Essentials',
+        'Director – Prime Health 5D India Pvt. Ltd.',
+        'Conducted 1,000+ Health Awareness Camps Nationwide'
       ],
       patientsHelped: '10,000+',
       rating: 4.9,
@@ -509,7 +513,7 @@ const App = () => {
               <title>KSK Healthcare - World-Class Holistic Wellness Center in Doddanekundi, Bangalore</title>
               <meta name="description" content="Government-certified holistic healthcare in Doddanekundi, Bangalore. Expert Acupuncture, Ayurveda, Physiotherapy, Speech & Hearing Care. 12+ years excellence. Book consultation: +91-8884333439" />
               <meta name="keywords" content="KSK Healthcare Doddanekundi, holistic healthcare Bangalore, acupuncture near Marathahalli, ayurveda Whitefield, speech therapy Bangalore, physiotherapy Doddanekundi, hearing care Marathahalli" />
-               <link rel="preload" as="image" href={heroBanner} fetchpriority="high" />
+              <link rel="preload" as="image" href={heroBanner} fetchpriority="high" />
             </Helmet>
 
             {/* Enhanced Schema Markup */}
@@ -824,34 +828,34 @@ const App = () => {
                   <div>
                     <h3 className="text-2xl font-bold text-gray-900 mb-6">Why Choose KSK Healthcare</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="flex items-start space-x-3">
-                      <CheckCircle className="h-6 w-6 text-green-600 mt-1" />
-                      <div>
-                        <h4 className="font-semibold text-gray-900">Expert Practitioners</h4>
-                        <p className="text-sm text-gray-600">Highly qualified and experienced doctors</p>
+                      <div className="flex items-start space-x-3">
+                        <CheckCircle className="h-6 w-6 text-green-600 mt-1" />
+                        <div>
+                          <h4 className="font-semibold text-gray-900">Expert Practitioners</h4>
+                          <p className="text-sm text-gray-600">Highly qualified and experienced doctors</p>
+                        </div>
                       </div>
-                    </div>
-                    <div className="flex items-start space-x-3">
-                      <CheckCircle className="h-6 w-6 text-green-600 mt-1" />
-                      <div>
-                        <h4 className="font-semibold text-gray-900">Holistic Approach</h4>
-                        <p className="text-sm text-gray-600">Treating mind, body, and spirit</p>
+                      <div className="flex items-start space-x-3">
+                        <CheckCircle className="h-6 w-6 text-green-600 mt-1" />
+                        <div>
+                          <h4 className="font-semibold text-gray-900">Holistic Approach</h4>
+                          <p className="text-sm text-gray-600">Treating mind, body, and spirit</p>
+                        </div>
                       </div>
-                    </div>
-                    <div className="flex items-start space-x-3">
-                      <CheckCircle className="h-6 w-6 text-green-600 mt-1" />
-                      <div>
-                        <h4 className="font-semibold text-gray-900">Modern Facilities</h4>
-                        <p className="text-sm text-gray-600">State-of-the-art equipment and environment</p>
+                      <div className="flex items-start space-x-3">
+                        <CheckCircle className="h-6 w-6 text-green-600 mt-1" />
+                        <div>
+                          <h4 className="font-semibold text-gray-900">Modern Facilities</h4>
+                          <p className="text-sm text-gray-600">State-of-the-art equipment and environment</p>
+                        </div>
                       </div>
-                    </div>
-                    <div className="flex items-start space-x-3">
-                      <CheckCircle className="h-6 w-6 text-green-600 mt-1" />
-                      <div>
-                        <h4 className="font-semibold text-gray-900">Personalized Care</h4>
-                        <p className="text-sm text-gray-600">Customized treatment plans for each patient</p>
+                      <div className="flex items-start space-x-3">
+                        <CheckCircle className="h-6 w-6 text-green-600 mt-1" />
+                        <div>
+                          <h4 className="font-semibold text-gray-900">Personalized Care</h4>
+                          <p className="text-sm text-gray-600">Customized treatment plans for each patient</p>
+                        </div>
                       </div>
-                    </div>
                     </div>
                   </div>
                 </div>
@@ -994,7 +998,7 @@ const App = () => {
                     Our <span className="text-green-600">Services</span>
                   </h2>
                   <p className="text-gray-600 max-w-3xl mx-auto" align="justify">
-                    About KSK Healthcare KSK Health Care offers a wide range of holistic and integrative therapies designed to support individuals of all ages. Our expert team combines traditional healing techniques such as acupuncture, Panchakarma, and acupressure with modern approaches in neuro-functional rehabilitation, nutrition, and hearing care. We create personalized treatment plans that address chronic pain, neurological and sensory challenges, and overall health, all without relying on drugs or surgery. 
+                    About KSK Healthcare KSK Health Care offers a wide range of holistic and integrative therapies designed to support individuals of all ages. Our expert team combines traditional healing techniques such as acupuncture, Panchakarma, and acupressure with modern approaches in neuro-functional rehabilitation, nutrition, and hearing care. We create personalized treatment plans that address chronic pain, neurological and sensory challenges, and overall health, all without relying on drugs or surgery.
                   </p>
                   <h3 className="text-xl font-semibold text-gray-800 mt-6">Traditional & Modern Healing Solutions</h3>
                 </div>
@@ -1019,12 +1023,12 @@ const App = () => {
                         <p className="text-gray-600 mb-4">{service.description}</p>
 
                         <div className="mb-6">
-                          <h4 className="text-sm font-semibold text-gray-900 mb-2">Key Benefits:</h4>
+                          <h4 className="text-sm font-semibold text-gray-900 mb-2">Service Types:</h4>
                           <div className="grid grid-cols-2 gap-1">
-                            {service.benefits.map((benefit, index) => (
+                            {(service.types || service.benefits || []).map((type, index) => (
                               <div key={index} className="flex items-center space-x-1">
                                 <CheckCircle className="h-3 w-3 text-green-600" />
-                                <span className="text-xs text-gray-600">{benefit}</span>
+                                <span className="text-xs text-gray-600">{type}</span>
                               </div>
                             ))}
                           </div>
@@ -1043,6 +1047,72 @@ const App = () => {
                       </div>
                     </div>
                   ))}
+                </div>
+              </div>
+            </section>
+
+            {/* Diagnostic Lab Tests Section */}
+            <section className="py-20 bg-gradient-to-br from-green-50 to-blue-50">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="text-center mb-16">
+                  <div className="inline-flex items-center justify-center space-x-2 bg-green-100 rounded-full px-6 py-2 mb-4">
+                    <Activity className="h-5 w-5 text-green-600" />
+                    <span className="text-green-800 font-semibold">Comprehensive Diagnostics</span>
+                  </div>
+                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    <span className="text-green-600">Diagnostic Lab Tests</span>
+                  </h2>
+                  <p className="text-gray-600 max-w-3xl mx-auto text-lg">
+                    We provide a wide range of laboratory tests for accurate diagnosis and personalized treatment planning.
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                  <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow border-l-4 border-green-500">
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">Complete Blood Count (CBC)</h3>
+                  </div>
+                  <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow border-l-4 border-blue-500">
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">Diabetic Profile</h3>
+                    <p className="text-sm text-gray-600">FBS, PPBS, HbA1C</p>
+                  </div>
+                  <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow border-l-4 border-purple-500">
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">Liver Function Test (LFT)</h3>
+                  </div>
+                  <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow border-l-4 border-red-500">
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">Lipid Profile</h3>
+                    <p className="text-sm text-gray-600">Cholesterol, Triglycerides, HDL, LDL, VLDL</p>
+                  </div>
+                  <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow border-l-4 border-yellow-500">
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">Kidney Function Test</h3>
+                    <p className="text-sm text-gray-600">Urea, Creatinine, Uric Acid, Electrolytes, RBS</p>
+                  </div>
+                  <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow border-l-4 border-indigo-500">
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">Hormonal Profile</h3>
+                    <p className="text-sm text-gray-600">T3, T4, Free T4, TSH, LH, FSH, Prolactin, Testosterone, Insulin</p>
+                  </div>
+                  <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow border-l-4 border-orange-500">
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">Infectious Diseases</h3>
+                    <p className="text-sm text-gray-600">Malaria, Dengue, Widal, Chikungunya</p>
+                  </div>
+                  <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow border-l-4 border-pink-500">
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">Viral Screening</h3>
+                    <p className="text-sm text-gray-600">HIV, HBsAg, HCV, VDRL</p>
+                  </div>
+                  <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow border-l-4 border-teal-500">
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">Orthopedic Profile</h3>
+                    <p className="text-sm text-gray-600">CRP, RA Factor, Uric Acid</p>
+                  </div>
+                </div>
+
+                <div className="mt-12 text-center bg-white rounded-2xl shadow-lg p-8">
+                  <p className="text-gray-700 mb-6 text-lg font-medium">Additional tests available: Urine Routine, Stool Culture, & Other Cultures</p>
+                  <WhatsAppButton
+                    message="Hello KSK Healthcare, I would like to inquire about diagnostic lab tests."
+                    className="inline-flex items-center space-x-2 bg-green-600 text-white py-4 px-8 rounded-lg font-semibold hover:bg-green-700 transition-all hover:scale-105 shadow-lg"
+                    showIcon={true}
+                  >
+                    Inquire About Tests
+                  </WhatsAppButton>
                 </div>
               </div>
             </section>
@@ -1073,10 +1143,6 @@ const App = () => {
                     <p className="text-green-600 font-semibold mb-2">{mainDoctor.title}</p>
                     <p className="text-gray-600 text-sm mb-4 max-w-xl">{mainDoctor.qualification}</p>
                     <div className="text-center mb-6">
-                      <div className="inline-flex items-center space-x-2 bg-green-50 rounded-full px-4 py-2 mb-4">
-                        <Shield className="h-4 w-4 text-green-600" />
-                        <span className="text-sm font-medium text-green-800">Founder & Lead Practitioner</span>
-                      </div>
                       <div className="flex items-center justify-center space-x-2 mb-2">
                         <div className="flex">
                           {[...Array(5)].map((_, i) => (
@@ -1204,7 +1270,7 @@ const App = () => {
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                   {/* Contact Information */}
                   <div className="space-y-6">
                     <div className="bg-gray-50 rounded-xl p-6">
@@ -1294,11 +1360,6 @@ const App = () => {
                         <span>Send Email</span>
                       </a>
                     </div>
-                  </div>
-
-                  {/* Quick Booking Form */}
-                  <div>
-                    <QuickBookingForm />
                   </div>
 
                   {/* Map and Additional Info */}

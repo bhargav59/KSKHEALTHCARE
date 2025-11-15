@@ -3,14 +3,6 @@ import { Helmet } from 'react-helmet-async';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 import {
-  getAllAppointments,
-  updateAppointmentStatus,
-  deleteAppointment,
-  getAllPatients,
-  getApprovedTestimonials,
-  approveTestimonial
-} from '../services/firestore';
-import {
   Calendar, Users, Activity, TrendingUp, Clock, CheckCircle,
   XCircle, AlertCircle, Trash2, Eye, Phone, Mail, Filter,
   Download, Search, ArrowLeft, Home
@@ -38,15 +30,7 @@ const AdminDashboard = () => {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const [appointmentsRes, patientsRes, testimonialsRes] = await Promise.all([
-        getAllAppointments(),
-        getAllPatients(),
-        getApprovedTestimonials()
-      ]);
-
-      if (appointmentsRes.success) setAppointments(appointmentsRes.data);
-      if (patientsRes.success) setPatients(patientsRes.data);
-      if (testimonialsRes.success) setTestimonials(testimonialsRes.data);
+      // Removed firestore-related logic. Replace with alternative data fetching logic if needed.
     } catch (error) {
       console.error('Error fetching data:', error);
     } finally {
@@ -55,26 +39,17 @@ const AdminDashboard = () => {
   };
 
   const handleStatusUpdate = async (appointmentId, newStatus) => {
-    const result = await updateAppointmentStatus(appointmentId, newStatus);
-    if (result.success) {
-      fetchData();
-    }
+    // Removed firestore-related logic. Replace with alternative status update logic if needed.
   };
 
   const handleDeleteAppointment = async (appointmentId) => {
     if (window.confirm('Are you sure you want to delete this appointment?')) {
-      const result = await deleteAppointment(appointmentId);
-      if (result.success) {
-        fetchData();
-      }
+      // Removed firestore-related logic. Replace with alternative delete logic if needed.
     }
   };
 
   const handleApproveTestimonial = async (testimonialId) => {
-    const result = await approveTestimonial(testimonialId);
-    if (result.success) {
-      fetchData();
-    }
+    // Removed firestore-related logic. Replace with alternative approve logic if needed.
   };
 
   // Calculate statistics
@@ -93,7 +68,7 @@ const AdminDashboard = () => {
   // Filter appointments
   const filteredAppointments = appointments.filter(appointment => {
     const matchesFilter = filter === 'all' || appointment.status === filter;
-    const matchesSearch = 
+    const matchesSearch =
       appointment.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
       appointment.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
       appointment.service?.toLowerCase().includes(searchTerm.toLowerCase());
@@ -208,11 +183,10 @@ const AdminDashboard = () => {
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`py-4 px-1 border-b-2 font-medium text-sm ${
-                    activeTab === tab
+                  className={`py-4 px-1 border-b-2 font-medium text-sm ${activeTab === tab
                       ? 'border-green-600 text-green-600'
                       : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                  }`}
+                    }`}
                 >
                   {tab.charAt(0).toUpperCase() + tab.slice(1)}
                 </button>
@@ -363,7 +337,7 @@ const AdminDashboard = () => {
                       ))}
                     </div>
                   </div>
-                  
+
                   <div className="bg-gray-50 rounded-lg p-6">
                     <h3 className="font-semibold text-gray-900 mb-4">Quick Stats</h3>
                     <div className="space-y-3">

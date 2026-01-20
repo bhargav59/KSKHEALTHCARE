@@ -11,26 +11,31 @@ import {
 import './App.css';
 
 // Import images
-import heroBanner from './assets/new-hero-banner.jpg';
+import heroBanner from './assets/new-hero-banner.jpg'; // Keep for helmet
 import aboutBanner from './assets/about-banner.png';
-import acupunctureImg from './assets/acupuncture.jpg';
-import speechTherapyImg from './assets/speech-therapy.jpg';
-import drSwethaImg from './assets/dr-swetha.png';
-import drMaheshImg from './assets/dr-mahesh.jpg';
-import ayurvedaPanchakarmaImg from './assets/ayurveda-panchakarma.jpg';
-import marmaTherapyImg from './assets/marma-therapy.jpg';
-import reflexologyImg from './assets/reflexology.jpg';
-import nutritionDietImg from './assets/nutrients.png';
+
+// Legacy image imports removed as they are now in constants
+
+
+// Data Imports
+import { SERVICES, DOCTORS, TESTIMONIALS, STATS, CREDIBILITY_BADGES, BUSINESS_INFO } from './data/constants';
+
+
+// Modern Components
+import HeroSection from './components/modern/HeroSection';
+import ServiceCard from './components/modern/ServiceCard';
+import AppointmentModal from './components/booking/AppointmentModal';
+import DoctorCard from './components/modern/DoctorCard';
+import TestimonialCarousel from './components/modern/TestimonialCarousel';
 
 //import homeopathyImg from './assets/homeopathy.jpg';
 
 // Components
 import SimpleMapRedirect from './components/SimpleMapRedirect';
+import GoogleAnalyticsProvider from './components/GoogleAnalyticsProvider';
+import SchemaMarkup from './components/SchemaMarkup';
 
-// New doctor images
-import drNishibhaImg from './assets/dr-nishibha.jpg';
-import mrsGayathriImg from './assets/mrs-gayathri.jpg';
-import nischithaImg from './assets/nischitha.jpg';
+
 // Import service pages
 import AcupunctureServicesPage from './pages/AcupunctureServicesPage.jsx';
 import AcupressureServicesPage from './pages/AcupressureServicesPage.jsx';
@@ -51,11 +56,9 @@ import DoctorAvatar from './components/DoctorAvatar';
 import ChatBot from './components/ChatBot';
 import ChatbotIntegration from './components/ChatbotIntegration';
 import MobileStickyButtons from './components/MobileStickyButtons';
-import PatientSuccessStories from './components/PatientSuccessStories';
-import SymptomChecker from './components/SymptomChecker';
-import GoogleAnalyticsProvider from './components/GoogleAnalyticsProvider';
-import SchemaMarkup from './components/SchemaMarkup';
 import FloatingContactButtons from './components/FloatingContactButtons';
+import SymptomChecker from './components/SymptomChecker';
+import PatientSuccessStories from './components/PatientSuccessStories';
 import { CHATBOT_CONFIG } from './config/chatbot';
 import { useCTATracking, usePhoneTracking } from './hooks/useAnalytics';
 
@@ -63,6 +66,15 @@ const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection] = useState('home');
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
+
+  // Modal State
+  const [isAppointmentModalOpen, setIsAppointmentModalOpen] = useState(false);
+  const [selectedService, setSelectedService] = useState('');
+
+  const openBookingModal = (serviceName = '') => {
+    setSelectedService(serviceName);
+    setIsAppointmentModalOpen(true);
+  };
 
   // Analytics tracking hooks
   const { trackCTA } = useCTATracking();
@@ -83,6 +95,7 @@ const App = () => {
         { label: 'Neuro Rehabilitation', path: '/services/neuro-rehab', icon: Brain },
         { label: 'Hearing Care Services', path: '/services/hearing-care', icon: Target },
         { label: 'Nutrition & Wellness', path: '/services/nutrition', icon: Heart }
+
       ]
     },
     { id: 'doctors', label: 'Our Doctors', path: '/#doctors' },
@@ -117,392 +130,11 @@ const App = () => {
     );
   };
 
-  // Services data
-  const services = [
-    {
-      id: 1,
-      name: 'Acupuncture Therapies',
-      description: 'Time-tested needle techniques tailored to restore energy balance, relieve chronic pain, and stimulate your body\'s natural healing.',
-      benefits: ['Chronic Pain Relief', 'Hormonal Balance', 'Improved Sleep', 'Stress & Anxiety Reduction'],
-      image: acupunctureImg,
-      icon: Activity,
-      blogPath: '/services/acupuncture'
-    },
-    {
-      id: 2,
-      name: 'Acupressure & Reflexology',
-      description: 'Drug-free, non-invasive pressure techniques on meridians and reflex zones to detox, relieve tension, and promote full-body wellness.',
-      benefits: ['Muscle Relaxation', 'Detoxification', 'Better Circulation', 'Deep Relaxation'],
-      image: reflexologyImg,
-      icon: Shield,
-      blogPath: '/services/acupressure'
-    },
-    {
-      id: 3,
-      name: 'Ayurvedic & Panchakarma',
-      description: 'Authentic Ayurveda detox and rejuvenation programs using medicated oils, herbal steam and classical therapies.',
-      benefits: ['Detoxification', 'Joint Pain Relief', 'Hormonal Balance', 'Rejuvenation'],
-      image: ayurvedaPanchakarmaImg,
-      icon: Leaf,
-      blogPath: '/services/ayurveda'
-    },
-    {
-      id: 4,
-      name: 'Neuro-Functional Rehabilitation',
-      description: 'Integrated physiotherapy, occupational, speech and behavioral therapies to enhance movement, cognition and daily living.',
-      benefits: ['Motor Skills', 'Speech & Language', 'Cognitive Boost', 'Behavior Regulation'],
-      image: marmaTherapyImg,
-      icon: Brain,
-      blogPath: '/services/neuro-rehab'
-    },
-    {
-      id: 5,
-      name: 'Hearing Care & Auditory Rehab',
-      description: 'Comprehensive diagnostics, hearing aid fitting and auditory-verbal therapy for all ages.',
-      benefits: ['Better Hearing', 'Speech Clarity', 'Improved Communication', 'Quality of Life'],
-      image: speechTherapyImg,
-      icon: Users,
-      blogPath: '/services/hearing-care'
-    },
-    {
-      id: 6,
-      name: 'Nutrition & Wellness',
-      description: 'Personalized diet plans that treat food as medicine to support healing, immunity and vitality.',
-      types: ['Metabolic & Lifestyle Disorders', 'Gut Health', 'Neurodevelopmental Support', 'Women\'s Health', 'Pain & Inflammation', 'Immune System Support'],
-      image: nutritionDietImg,
-      icon: Heart,
-      blogPath: '/services/nutrition'
-    }
-  ];
 
-  // Doctors data
-  const doctors = [
-    {
-      id: 1,
-      name: 'Dr. Gandrajupalli Swetha',
-      title: 'Founder & Lead Practitioner',
-      qualification: 'Ph.D. (Neuro-Acupuncture) | M.Sc. (Speech-Language Pathology & Audiology) | Certified Functional Medicine Practitioner',
-      experience: '12+ years',
-      specializations: [
-        'Neuro-Speech & Language Disorders',
-        'Hearing Evaluation & Aural Rehabilitation',
-        'Neuro-Acupuncture & Acupressure for Brain Development',
-        'Functional Nutrition for Brain & Cognitive Health',
-        'Multimodal Therapy for ADHD, Autism & Speech Delay',
-        'Functional Rehabilitation & Brain Stimulation',
-        'Stroke & Neuro-Rehabilitation (All Ages)',
-        'Holistic Integration of Speech, Acupuncture & Nutrition'
-      ],
-      achievements: [
-        'Gold Medalist – Academic Excellence',
-        'RCI-Certified Speech-Language Pathologist & Audiologist',
-        'Researcher – National & International Journals',
-        'Ph.D. in Neuro-Acupuncture',
-        'Certified Functional Nutrition Specialist',
-        'Founder – KSK Health Care & Swadhma Essentials',
-        'Director – Prime Health 5D India Pvt. Ltd.',
-        'Conducted 1,000+ Health Awareness Camps Nationwide'
-      ],
-      patientsHelped: '10,000+',
-      rating: 4.9,
-      image: drSwethaImg
-    },
-    {
-      id: 2,
-      name: 'Dr. Maheshwarswami K. H',
-      title: 'Senior Ayurvedic Physician',
-      qualification: 'MD (Ayurveda) | Member – AYUSH',
-      experience: '16+ years',
-      specializations: [
-        'Classical Ayurveda & Panchakarma Therapies',
-        'Holistic Lifestyle & Preventive Care',
-        'Integrative Pain Management',
-        'Herbal Pharmacology',
-        'Detox & Rejuvenation Programs'
-      ],
-      achievements: [
-        'Treated 10,000+ patients successfully',
-        'Expert in Traditional & Evidence-based Ayurveda',
-        'Regular speaker at Ayurveda conferences',
-        'Developed customised Panchakarma protocols'
-      ],
-      patientsHelped: '10,000+',
-      rating: 4.8,
-      image: drMaheshImg
-    },
-    {
-      id: 3,
-      name: 'Dr. Nishibha G. Kotian',
-      title: 'Senior Physiotherapist',
-      qualification: 'MPT (Pediatrics & Neurology)',
-      experience: '7+ years',
-      specializations: [
-        'Developmental Movement Intervention (DMI)',
-        'Neuro Developmental Therapy (NDT)',
-        'Sensory Integration Therapy',
-        'Dysgraphia Management'
-      ],
-      achievements: [
-        'Treated 5,000+ pediatric & neuro patients',
-        'Certified in multiple paediatric rehab techniques',
-        'Active contributor to parent training workshops'
-      ],
-      patientsHelped: '5,000+',
-      rating: 4.7,
-      image: drNishibhaImg
-    },
-    {
-      id: 4,
-      name: 'Dr. Harish Shinde',
-      title: 'Senior Audiologist',
-      qualification: 'M.Sc (Audiology) | RCI & ISHA Certified',
-      experience: '18+ years',
-      specializations: [
-        'Diagnostic Audiology',
-        'Advanced Hearing Aid Solutions',
-        'Vestibular Assessment',
-        'Tinnitus Management'
-      ],
-      achievements: [
-        'Helped 10,000+ patients regain hearing',
-        'Lead trainer for budding audiologists',
-        'Published articles on adult & geriatric audiology'
-      ],
-      patientsHelped: '10,000+',
-      rating: 4.9,
-      image: 'https://via.placeholder.com/150'
-    },
-    {
-      id: 5,
-      name: 'Dr. Satheesh Sakinala Patel',
-      title: 'Sr. Speech-Language Pathologist & Audiologist',
-      qualification: 'M.Sc (SLP & Audiology) | RCI & ISHA Certified',
-      experience: '16+ years',
-      specializations: [
-        'Hearing, Speech & Vestibular Disorders',
-        'Adult Neuro-Rehabilitation',
-        'Voice Therapy',
-        'Cochlear Implant Rehabilitation'
-      ],
-      achievements: [
-        'Assisted 10,000+ clients',
-        'Keynote speaker at speech & hearing seminars',
-        'Developed vestibular rehab protocols'
-      ],
-      patientsHelped: '10,000+',
-      rating: 4.8,
-      image: 'https://via.placeholder.com/150'
-    },
-    {
-      id: 6,
-      name: 'Mrs. Nagaveni',
-      title: 'Acupuncture Therapist',
-      qualification: 'M.Sc (Acupuncture)',
-      experience: '4+ years',
-      specializations: [
-        'Pain Management',
-        'Holistic Healing',
-        'Stress & Anxiety Relief'
-      ],
-      achievements: [
-        'Treated 2,000+ patients',
-        'Known for gentle & effective needle techniques'
-      ],
-      patientsHelped: '2,000+',
-      rating: 4.6,
-      image: 'https://via.placeholder.com/150'
-    },
-    {
-      id: 7,
-      name: 'Mrs. Nischitha G. C.',
-      title: 'Child Psychologist & Remedial Therapist',
-      qualification: 'M.Sc (Clinical Psychology)',
-      experience: '3+ years',
-      specializations: [
-        'Emotional & Behavioural Difficulties',
-        'Learning Disabilities',
-        'Cognitive-Behavioural Therapy (CBT)',
-        'Parent & Family Counselling'
-      ],
-      achievements: [
-        'Supported 1,000+ children & families',
-        'Conducted school-based mental health programs'
-      ],
-      patientsHelped: '1,000+',
-      rating: 4.7,
-      image: nischithaImg
-    },
-    {
-      id: 8,
-      name: 'Mrs. Gayathri Ravish',
-      title: 'Special Educator – Hearing Impairment & Educational Psychologist',
-      qualification: 'M.Ed (Special Education)',
-      experience: '20+ years',
-      specializations: [
-        'Inclusive Education',
-        'Educational Psychology',
-        'Curriculum Adaptation',
-        'Research & Training'
-      ],
-      achievements: [
-        'Empowered 10,000+ children & families',
-        'Developed inclusive education modules',
-        'Mentor for aspiring special educators'
-      ],
-      patientsHelped: '10,000+',
-      rating: 4.9,
-      image: mrsGayathriImg
-    }
-  ];
 
-  // Separate main doctor and others for layout
-  const mainDoctor = doctors.find((d) => d.name === 'Dr. Gandrajupalli Swetha');
-  const otherDoctors = doctors.filter((d) => d.name !== 'Dr. Gandrajupalli Swetha');
-
-  // Testimonials data
-  const testimonials = [
-    {
-      id: 1,
-      name: 'Dr. Aparna',
-      location: 'Bangalore',
-      service: 'Speech & Hearing Therapy',
-      doctor: 'Dr. Gandrajupalli Swetha',
-      rating: 5,
-      text: "Aarohi, my daughter, has learnt some dialogues from her brother Abhimanyu's role in drama. It's a miraculous journey that she is able to speak so fluently. Very grateful to you Dr. Swetha and your team.",
-      category: 'Speech Therapy'
-    }
-  ];
-
-  const duplicatedTestimonials = [...testimonials, ...testimonials];
-
-  // Stats data
-  const stats = [
-    { number: '1500+', label: 'Happy Patients', icon: Users },
-    { number: '98%', label: 'Success Rate', icon: Award },
-    { number: '12+', label: 'Years Experience', icon: Calendar },
-    { number: '4.9/5', label: 'Patient Rating', icon: Star }
-  ];
-
-  // Credibility badges data
-  const credibilityBadges = [
-    { name: 'RCI Certified', description: 'Rehabilitation Council of India', icon: Shield },
-    { name: 'AYUSH Registered', description: 'Ministry of AYUSH, Govt. of India', icon: Award },
-    { name: 'SSL Secured', description: 'Your data is safe with us', icon: CheckCircle },
-    { name: 'ISO Certified', description: 'Quality Management System', icon: Star }
-  ];
-
-  // Business Information (NAP)
-  const businessInfo = {
-    name: 'KSK Healthcare',
-    fullName: 'KSK Healthcare - Cure and Care with a Difference',
-    address: {
-      street: '6B, Kote NCMR Building, Karthik Nagar Service Road',
-      area: 'Outer Ring Rd, Doddanekundi',
-      city: 'Bengaluru',
-      state: 'Karnataka',
-      pincode: '560037',
-      country: 'India'
-    },
-    phone: '+91 88843 33439',
-    email: 'kskhealthcare.in@gmail.com',
-    coordinates: {
-      latitude: 12.9698,
-      longitude: 77.7500
-    },
-    hours: 'Monday - Sunday: 9:00 AM - 7:00 PM',
-    website: 'https://kskhealthcare.in'
-  };
-
-  // JSON-LD Schema Markup for Local Business (Medical Clinic)
-  const schemaMarkup = {
-    "@context": "https://schema.org",
-    "@type": "MedicalClinic",
-    "name": businessInfo.fullName,
-    "alternateName": businessInfo.name,
-    "description": "Premier clinic in Bangalore offering Acupuncture, Ayurveda, Speech Therapy, and comprehensive traditional healing modalities integrated with modern medical practices. Cure and Care with a Difference.",
-    "url": businessInfo.website,
-    "telephone": businessInfo.phone,
-    "email": businessInfo.email,
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": businessInfo.address.street,
-      "addressLocality": businessInfo.address.city,
-      "addressRegion": businessInfo.address.state,
-      "postalCode": businessInfo.address.pincode,
-      "addressCountry": businessInfo.address.country
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": businessInfo.coordinates.latitude,
-      "longitude": businessInfo.coordinates.longitude
-    },
-    "openingHours": [
-      "Mo-Su 09:00-19:00"
-    ],
-    "priceRange": "$$",
-    "paymentAccepted": ["Cash", "Credit Card", "UPI", "Bank Transfer"],
-    "currenciesAccepted": "INR",
-    "areaServed": {
-      "@type": "City",
-      "name": "Bengaluru"
-    },
-    "medicalSpecialty": [
-      "Acupuncture",
-      "Ayurveda",
-      "Speech Therapy",
-      "Physiotherapy",
-      "Audiology",
-      "Psychology",
-      "Reflexology",
-      "Panchakarma"
-    ],
-    "hasCredential": [
-      "RCI Certification",
-      "AYUSH Registration",
-      "ISO Standards"
-    ],
-    "founder": {
-      "@type": "Person",
-      "name": "Dr. Gandrajupalli Swetha",
-      "jobTitle": "Founder Director & Head – Neuro-Speech, Hearing & Acupuncture Dept.",
-      "hasCredential": "Ph.D. in Neuro-Acupuncture, M.Sc. Speech-Language Pathology & Audiology"
-    },
-    "employee": [
-      {
-        "@type": "Person",
-        "name": "Dr. Maheshwarswami K. H",
-        "jobTitle": "Senior Ayurvedic Physician",
-        "hasCredential": "MD (Ayurveda), Member – AYUSH"
-      }
-    ],
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "350",
-      "bestRating": "5",
-      "worstRating": "1"
-    },
-    "review": [
-      {
-        "@type": "Review",
-        "author": {
-          "@type": "Person",
-          "name": "Dr. Aparna"
-        },
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5"
-        },
-        "reviewBody": "Aarohi, my daughter, has learnt some dialogues from her brother Abhimanyu's role in drama. It's a miraculous journey that she is able to speak so fluently. Very grateful to you Dr. Swetha and your team."
-      }
-    ],
-    "sameAs": [
-      "https://www.facebook.com/profile.php?id=61563837613811",
-      "https://www.instagram.com/kskhealthcare/",
-      "https://www.linkedin.com/in/ksk-health-care-b067a0329/",
-      "https://x.com/kskhealthcarein"
-    ]
-  };
+  // Derived Data
+  const mainDoctor = DOCTORS.find(doc => doc.isFounder);
+  const otherDoctors = DOCTORS.filter(doc => !doc.isFounder);
 
   return (
     <GoogleAnalyticsProvider measurementId="G-XXXXXXXXXX">
@@ -702,43 +334,7 @@ const App = () => {
             </header>
 
             {/* Hero Section */}
-            <section id="home" className="relative min-h-screen flex items-center">
-              <div
-                className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                style={{ backgroundImage: `url(${heroBanner})` }}
-              >
-                <div className="absolute inset-0 bg-black/40"></div>
-              </div>
-
-              <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-                <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
-                  World-Class <span className="text-green-400">Holistic</span><br />
-                  Healthcare in Bangalore
-                </h1>
-                <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-                  Experience the perfect blend of ancient wisdom and modern healing techniques.
-                  Your journey to optimal wellness starts here.
-                </p>
-
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <WhatsAppButton
-                    message="Hello KSK Healthcare, I would like to book a consultation."
-                    className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-2"
-                    showIcon={true}
-                  >
-                    Book Consultation
-                  </WhatsAppButton>
-
-                  <button
-                    onClick={() => scrollToSection('services')}
-                    className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-lg font-semibold hover:bg-white/20 transition-all duration-300 flex items-center justify-center space-x-2"
-                  >
-                    <span>Our Services</span>
-                    <ArrowRight className="h-5 w-5" />
-                  </button>
-                </div>
-              </div>
-            </section>
+            <HeroSection scrollToSection={scrollToSection} openBookingModal={openBookingModal} />
 
             {/* Stats Section */}
             <section className="py-16 bg-gray-50">
@@ -760,7 +356,7 @@ const App = () => {
                 </div>
 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                  {stats.map((stat, index) => (
+                  {STATS.map((stat, index) => (
                     <div key={index} className="text-center">
                       <div className="bg-green-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                         <stat.icon className="h-8 w-8 text-green-600" />
@@ -781,7 +377,7 @@ const App = () => {
                     Our Certifications & Security
                   </h3>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    {credibilityBadges.map((badge, index) => (
+                    {CREDIBILITY_BADGES.map((badge, index) => (
                       <div key={index} className="bg-white rounded-lg p-4 shadow-md text-center border">
                         <badge.icon className="h-8 w-8 text-green-600 mx-auto mb-2" />
                         <h4 className="font-semibold text-gray-900 text-sm mb-1">{badge.name}</h4>
@@ -1004,48 +600,13 @@ const App = () => {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {services.map((service) => (
-                    <div key={service.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                      <div className="relative h-48">
-                        <img
-                          src={service.image}
-                          alt={service.name}
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                        />
-                        <div className="absolute top-4 left-4 bg-green-600 rounded-full p-2">
-                          <service.icon className="h-6 w-6 text-white" />
-                        </div>
-                      </div>
-
-                      <div className="p-6">
-                        <h3 className="text-xl font-semibold text-gray-900 mb-3">{service.name}</h3>
-                        <p className="text-gray-600 mb-4">{service.description}</p>
-
-                        <div className="mb-6">
-                          <h4 className="text-sm font-semibold text-gray-900 mb-2">Service Types:</h4>
-                          <div className="grid grid-cols-2 gap-1">
-                            {(service.types || service.benefits || []).map((type, index) => (
-                              <div key={index} className="flex items-center space-x-1">
-                                <CheckCircle className="h-3 w-3 text-green-600" />
-                                <span className="text-xs text-gray-600">{type}</span>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-
-                        <WhatsAppButton
-                          message={`Hello KSK Healthcare, I would like to book a consultation for ${service.name}.`}
-                          className="w-full bg-green-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-green-700 transition-colors flex items-center justify-center space-x-2"
-                          showIcon={true}
-                        >
-                          Book Consultation
-                        </WhatsAppButton>
-                        <Link to={service.blogPath}>
-                          <Button variant="outline" className="w-full">Learn More</Button>
-                        </Link>
-                      </div>
-                    </div>
+                  {SERVICES.map((service, index) => (
+                    <ServiceCard
+                      key={service.id}
+                      service={service}
+                      index={index}
+                      openBookingModal={() => openBookingModal(service.name)}
+                    />
                   ))}
                 </div>
               </div>
@@ -1206,55 +767,49 @@ const App = () => {
                 {/* Other Doctors */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {otherDoctors.map((doctor) => (
-                    <div key={doctor.id} className="bg-gray-50 rounded-xl p-6">
-                      <div className="flex items-start space-x-4 mb-4">
-                        <DoctorAvatar doctor={doctor} />
-                        <div className="flex-1">
-                          <h3 className="text-xl font-bold text-gray-900 mb-1">{doctor.name}</h3>
-                          <p className="text-green-600 font-semibold mb-1 text-sm">{doctor.title}</p>
-                          <p className="text-gray-600 text-xs mb-2">{doctor.qualification}</p>
-
-                          {/* Professional Certifications */}
-                          {doctor.qualification.includes('RCI') && (
-                            <div className="flex items-center space-x-1 mb-2">
-                              <Shield className="h-3 w-3 text-green-600" />
-                              <span className="text-xs text-green-600 font-medium">RCI Certified</span>
-                            </div>
-                          )}
-                          {doctor.qualification.includes('AYUSH') && (
-                            <div className="flex items-center space-x-1 mb-2">
-                              <Award className="h-3 w-3 text-green-600" />
-                              <span className="text-xs text-green-600 font-medium">AYUSH Registered</span>
-                            </div>
-                          )}
-
-                          <div className="flex items-center space-x-3 text-xs">
-                            <div className="flex items-center space-x-1">
-                              <Calendar className="h-3 w-3 text-gray-500" />
-                              <span>{doctor.experience}</span>
-                            </div>
-                            <div className="flex items-center space-x-1">
-                              <Users className="h-3 w-3 text-gray-500" />
-                              <span>{doctor.patientsHelped}</span>
-                            </div>
-                            <div className="flex items-center space-x-1">
-                              <Star className="h-3 w-3 text-yellow-400 fill-current" />
-                              <span>{doctor.rating}</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Booking removed for other doctors */}
-                    </div>
+                    <DoctorCard
+                      key={doctor.id}
+                      doctor={doctor}
+                      onBook={() => openBookingModal(`Consultation with ${doctor.name}`)}
+                    />
                   ))}
                 </div>
               </div>
+
             </section>
 
-            {/* Patient Success Stories Section */}
-            <section id="testimonials">
-              <PatientSuccessStories />
+            {/* Testimonials Section */}
+            <section id="testimonials" className="py-20 bg-green-50">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    Patient <span className="text-green-600">Success Stories</span>
+                  </h2>
+                  <p className="text-gray-600 max-w-2xl mx-auto">
+                    Real stories from real patients who have found relief and healing at KSK Healthcare.
+                  </p>
+                </div>
+
+                <TestimonialCarousel testimonials={TESTIMONIALS} />
+
+                {/* Featured Success Story (Video) */}
+                <div className="mt-16 bg-white rounded-2xl shadow-sm p-4">
+                  <h3 className="text-2xl font-bold text-center text-gray-900 mb-8">Featured Transformation</h3>
+                  <PatientSuccessStories />
+                </div>
+
+                <div className="text-center mt-12">
+                  <a
+                    href="https://g.page/ksk-healthcare/review"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-2 text-green-600 hover:text-green-700 font-semibold transition-colors border-b-2 border-transparent hover:border-green-600"
+                  >
+                    <span>Read more reviews on Google</span>
+                    <ExternalLink className="h-4 w-4" />
+                  </a>
+                </div>
+              </div>
             </section>
 
             {/* Contact Section */}
@@ -1532,39 +1087,46 @@ const App = () => {
             <SymptomChecker />
           </div>
         } />
-        <Route path="/blog" element={<BlogList />} />
-        <Route path="/blog/acupuncture-therapies" element={<AcupunctureServicesPage />} />
-        <Route path="/blog/acupressure-therapies" element={<AcupressureServicesPage />} />
-        <Route path="/blog/ayurvedic-panchakarma" element={<AyurvedicServicesPage />} />
-        <Route path="/blog/neuro-rehab" element={<NeuroRehabServicesPage />} />
-        <Route path="/blog/hearing-care" element={<HearingCareServicesPage />} />
-        <Route path="/blog/nutrition-wellness" element={<NutritionWellnessPage />} />
-        <Route path="/services/acupuncture" element={<AcupunctureServicesPage />} />
-        <Route path="/services/acupressure" element={<AcupressureServicesPage />} />
-        <Route path="/services/ayurveda" element={<AyurvedicServicesPage />} />
-        <Route path="/services/neuro-rehab" element={<NeuroRehabServicesPage />} />
-        <Route path="/services/hearing-care" element={<HearingCareServicesPage />} />
-        <Route path="/services/nutrition" element={<NutritionWellnessPage />} />
-        <Route path="/booking-confirmation" element={<BookingConfirmationPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignupPage />} />
-        <Route path="/admin" element={
-          <ProtectedRoute requireAdmin={true}>
+        < Route path="/blog" element={< BlogList />} />
+        < Route path="/blog/acupuncture-therapies" element={< AcupunctureServicesPage />} />
+        < Route path="/blog/acupressure-therapies" element={< AcupressureServicesPage />} />
+        < Route path="/blog/ayurvedic-panchakarma" element={< AyurvedicServicesPage />} />
+        < Route path="/blog/neuro-rehab" element={< NeuroRehabServicesPage />} />
+        < Route path="/blog/hearing-care" element={< HearingCareServicesPage />} />
+        < Route path="/blog/nutrition-wellness" element={< NutritionWellnessPage />} />
+        < Route path="/services/acupuncture" element={< AcupunctureServicesPage />} />
+        < Route path="/services/acupressure" element={< AcupressureServicesPage />} />
+        < Route path="/services/ayurveda" element={< AyurvedicServicesPage />} />
+        < Route path="/services/neuro-rehab" element={< NeuroRehabServicesPage />} />
+        < Route path="/services/hearing-care" element={< HearingCareServicesPage />} />
+        < Route path="/services/nutrition" element={< NutritionWellnessPage />} />
+        < Route path="/booking-confirmation" element={< BookingConfirmationPage />} />
+        < Route path="/login" element={< LoginPage />} />
+        < Route path="/signup" element={< SignupPage />} />
+        < Route path="/admin" element={
+          < ProtectedRoute requireAdmin={true} >
             <AdminDashboard />
-          </ProtectedRoute>
+          </ProtectedRoute >
         } />
-        <Route path="/admin/chatbot" element={
-          <ProtectedRoute requireAdmin={true}>
+        < Route path="/admin/chatbot" element={
+          < ProtectedRoute requireAdmin={true} >
             <ChatbotAdmin />
-          </ProtectedRoute>
+          </ProtectedRoute >
         } />
-        <Route path="/admin/analytics" element={
-          <ProtectedRoute requireAdmin={true}>
+        < Route path="/admin/analytics" element={
+          < ProtectedRoute requireAdmin={true} >
             <AnalyticsDashboard />
-          </ProtectedRoute>
+          </ProtectedRoute >
         } />
-      </Routes>
-    </GoogleAnalyticsProvider>
+      </Routes >
+
+      {/* Booking Modal */}
+      < AppointmentModal
+        isOpen={isAppointmentModalOpen}
+        onClose={() => setIsAppointmentModalOpen(false)}
+        preselectedService={selectedService}
+      />
+    </GoogleAnalyticsProvider >
   );
 };
 

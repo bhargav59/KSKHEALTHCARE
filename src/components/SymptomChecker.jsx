@@ -325,23 +325,62 @@ const SymptomChecker = () => {
         // Find next step or generate recommendation
         simulateTyping(() => {
             if (option.id in treatmentRecommendations) {
+                // Determine if we need to ask for severity first (for pain conditions)
+                const isPainCondition = ['back_pain', 'joint_pain', 'neck_shoulder', 'muscle_pain', 'headaches'].includes(option.id);
+
+                if (isPainCondition && !userResponses.severity) {
+                    // Ask for severity
+                    const botMessage = {
+                        type: 'bot',
+                        message: "On a scale of 1 to 10, how severe is the pain?",
+                        options: [
+                            { id: 'mild', text: '1-3 (Mild)', emoji: '🙂', value: 2 },
+                            { id: 'moderate', text: '4-7 (Moderate)', emoji: '😐', value: 5 },
+                            { id: 'severe', text: '8-10 (Severe)', emoji: '😫', value: 9 }
+                        ],
+                        timestamp: new Date(),
+                        meta: { pendingSymptom: option.id }
+                    };
+                    setChatHistory(prev => [...prev, botMessage]);
+                    return; // Wait for severity input
+                }
+
                 // Generate final recommendation
                 const recommendation = treatmentRecommendations[option.id];
+                const severity = userResponses.severity || 'moderate';
+                const isUrgent = severity === 'severe';
+
                 setRecommendation(recommendation);
 
                 const botMessage = {
                     type: 'bot',
-                    message: `Based on your symptoms, I recommend ${recommendation.primaryTreatment} as your primary treatment. Here's your personalized treatment plan:`,
+                    message: isUrgent
+                        ? `⚠️ Since your pain is severe, I recommend immediate attention. ${recommendation.primaryTreatment} is very effective for acute relief.`
+                        : `Based on your symptoms, I recommend ${recommendation.primaryTreatment} as your primary treatment. Here's your personalized treatment plan:`,
                     isRecommendation: true,
-                    recommendation: recommendation,
+                    recommendation: {
+                        ...recommendation,
+                        urgency: isUrgent ? 'High Priority' : 'Standard Care'
+                    },
                     timestamp: new Date()
                 };
 
                 setChatHistory(prev => [...prev, botMessage]);
                 trackEvent('recommendation_generated', {
                     label: option.id,
-                    treatment: recommendation.primaryTreatment
+                    treatment: recommendation.primaryTreatment,
+                    severity: severity
                 });
+            } else if (chatHistory[chatHistory.length - 1]?.meta?.pendingSymptom) {
+                // Handle severity selection
+                const pendingSymptom = chatHistory[chatHistory.length - 1].meta.pendingSymptom;
+                const severityValue = option.id; // mild, moderate, severe
+
+                setUserResponses(prev => ({ ...prev, severity: severityValue }));
+
+                // Recursively call to generate recommendation now that we have severity
+                handleOptionSelect({ id: pendingSymptom, text: 'Processing...' });
+
             } else {
                 // Continue to next step
                 const nextStep = symptomFlow.find(step => step.id === option.id);

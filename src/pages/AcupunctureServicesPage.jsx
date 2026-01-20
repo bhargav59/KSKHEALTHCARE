@@ -7,13 +7,12 @@ import {
 } from 'lucide-react';
 import SimpleMapRedirect from '../components/SimpleMapRedirect';
 
+import { BUSINESS_INFO } from '../data/constants';
+
 const AcupunctureServicesPage = () => {
-    // Business contact info
-    const businessInfo = {
-        phone: '+91 88843 33439',
-        email: 'kskhealthcare.in@gmail.com',
-        address: '6B, Kote NCMR Building, Karthik Nagar Service Road, Outer Ring Rd, Doddanekundi, Bengaluru, Karnataka 560037'
-    };
+    // Business contact info from constants
+    const businessInfo = BUSINESS_INFO;
+
 
     // WhatsApp component
     const WhatsAppButton = ({ message, children, className = "", showIcon = false }) => {

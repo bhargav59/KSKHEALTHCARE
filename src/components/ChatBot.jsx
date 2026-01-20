@@ -31,20 +31,31 @@ const ChatBot = () => {
         'General Consultation'
     ];
 
-    // Available time slots
-    const timeSlots = [
-        '9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM',
-        '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM', '6:00 PM'
-    ];
+    const [language, setLanguage] = useState('english');
 
-    // Initialize chat with greeting and setup message listeners
+    // Services and Time Slots
+    const getAvailableSlots = () => {
+        // Mock logic to show "real" looking availability
+        const now = new Date();
+        const hour = now.getHours();
+        const baseSlots = [
+            '10:00 AM', '11:00 AM', '12:30 PM',
+            '3:00 PM', '4:30 PM', '6:00 PM'
+        ];
+        // Filter out past slots if today (simplified)
+        return baseSlots;
+    };
+
+    const timeSlots = getAvailableSlots();
+
+    // Initialize chat with Language Selection and setup listeners
     useEffect(() => {
         if (isOpen && messages.length === 0) {
             setTimeout(() => {
-                addBotMessage("Hello! Welcome to KSK Healthcare 🌿\n\nI'm here to help you book an appointment or answer your questions. How can I assist you today?", [
-                    "Book an Appointment",
-                    "Ask a Question",
-                    "Emergency Contact"
+                addBotMessage("Namaste! Welcome to KSK Healthcare. Please choose your preferred language:", [
+                    "English",
+                    "Kannada (Coming Soon)",
+                    "Telugu (Coming Soon)"
                 ]);
             }, 500);
         }
@@ -77,6 +88,14 @@ Thank you ${bookingData.name}! Our team will contact you shortly.`, [
         };
     }, [isOpen, messages.length, bookingData.name]);
 
+    const initMainFlow = () => {
+        addBotMessage("Hello! Welcome to KSK Healthcare 🌿\n\nI'm here to help you book an appointment or answer your questions. How can I assist you today?", [
+            "Book an Appointment",
+            "Ask a Question",
+            "Emergency Contact"
+        ]);
+    };
+
     const addBotMessage = (text, quickReplies = []) => {
         // Remove asterisks from bot text
         const cleanText = typeof text === 'string' ? text.replace(/\*/g, '') : text;
@@ -100,6 +119,21 @@ Thank you ${bookingData.name}! Our team will contact you shortly.`, [
 
     const handleQuickReply = (reply) => {
         addUserMessage(reply);
+
+        if (reply === "English") {
+            setLanguage('english');
+            initMainFlow();
+            return;
+        }
+
+        if (reply.includes("Kannada") || reply.includes("Telugu")) {
+            addBotMessage("Coming soon! Proceeding in English for now.", []);
+            setTimeout(() => {
+                setLanguage('english');
+                initMainFlow();
+            }, 1000);
+            return;
+        }
 
         // Handle special quick replies
         if (reply === "Resend WhatsApp" || reply === "Manual Send" || reply === "🔄 Try Auto-Send Again") {
@@ -273,12 +307,15 @@ Your appointment request has been submitted successfully!
                     setTimeout(() => {
                         addBotMessage("I'm here to help! What would you like to know about?", [
                             "Services & Treatments",
+                            "Cost & Insurance",  // Updated
                             "Clinic Timings",
-                            "Location & Directions",
-                            "Insurance & Payments"
+                            "Location & Directions"
                         ]);
                     }, 1000);
-                    // Remove practitioner suggestion
+                } else if (lowerInput.includes('cost') || lowerInput.includes('price')) {  // Direct shortcut
+                    handleQuestions('cost');
+                } else if (lowerInput.includes('insurance')) { // Direct shortcut
+                    handleQuestions('insurance');
                 } else if (lowerInput.includes('emergency')) {
                     handleEmergencyContact();
                 } else {
@@ -965,6 +1002,26 @@ Would you like me to share the Google Maps link?`, [
                     "Get Directions",
                     "Book Appointment",
                     "Call for Help"
+                ]);
+            }, 1000);
+        } else if (input.includes('cost') || input.includes('price') || input.includes('insurance') || input.includes('payment')) {
+            setTimeout(() => {
+                addBotMessage(`💰 Cost & Insurance Information:
+
+• Consultation: ₹500 - ₹800 (approx)
+• Therapy Sessions: ₹800 - ₹1500 per session
+• Packages: Available for long-term treatments (10-20% discount)
+
+🏥 Insurance:
+• We accept major health insurance providers for specific treatments.
+• Please carry your policy card during your visit.
+
+💳 Payment Modes:
+• Cash, UPI, Credit/Debit Cards
+
+Would you like to book a consultation to get an exact treatment plan estimate?`, [
+                    "Book Appointment",
+                    "Call for Details"
                 ]);
             }, 1000);
         } else {

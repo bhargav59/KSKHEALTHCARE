@@ -1,0 +1,74 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Allow anyone to read public data
+    match /public/{document=**} {
+      allow read: if true;
+      allow write: if false; // Only admin via backend
+    }
+    
+    // Users collection
+    match /users/{userId} {
+      // Users can read/update their own profile
+      allow read: if request.auth != null && request.auth.uid == userId;
+      allow update: if request.auth != null && request.auth.uid == userId;
+      // Users can create their own profile
+      allow create: if request.auth != null && request.auth.uid == userId;
+      // Only admin can delete
+      allow delete: if request.auth != null && request.auth.token.admin == true;
+    }
+    
+    // Appointments collection
+    match /appointments/{appointmentId} {
+      // Authenticated users can create appointments
+      allow create: if request.auth != null;
+      // Users can read their own appointments
+      allow read: if request.auth != null && 
+        (request.auth.uid == resource.data.userId ||
+         request.auth.token.admin == true);
+      // Only admin can update/delete
+      allow update: if request.auth != null && request.auth.token.admin == true;
+      allow delete: if request.auth != null && request.auth.token.admin == true;
+    }
+    
+    // Doctors collection
+    match /doctors/{doctorId} {
+      // Anyone can read doctor info
+      allow read: if true;
+      // Only admin can write
+      allow write: if request.auth != null && request.auth.token.admin == true;
+    }
+    
+    // Services collection
+    match /services/{serviceId} {
+      // Anyone can read services
+      allow read: if true;
+      // Only admin can write
+      allow write: if request.auth != null && request.auth.token.admin == true;
+    }
+    
+    // Testimonials collection
+    match /testimonials/{testimonialId} {
+      // Anyone can read approved testimonials
+      allow read: if request.auth != null && resource.data.approved == true ||
+                      request.auth.token.admin == true;
+      // Authenticated users can create testimonials
+      allow create: if request.auth != null;
+      // Admin can approve/update
+      allow update: if request.auth != null && request.auth.token.admin == true;
+      allow delete: if request.auth != null && request.auth.token.admin == true;
+    }
+    
+    // Settings collection (admin only)
+    match /settings/{document=**} {
+      allow read: if request.auth != null && request.auth.token.admin == true;
+      allow write: if request.auth != null && request.auth.token.admin == true;
+    }
+    
+    // Deny all other access
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -127,30 +127,45 @@ const SchemaMarkup = () => {
         "worksFor": {
           "@id": "https://kskhealthcare.in/#organization"
         },
-        "qualifications": "MD (Ayurveda), Member – AYUSH"
+        "qualifications": "MD (Ayurveda), Member – AYUSH",
+        "yearsOfExperience": "16+"
       },
       {
         "@type": "Physician",
-        "name": "Dr. Nishibha",
-        "jobTitle": "Occupational Therapist & Behavioral Specialist",
+        "name": "Dr. Nishibha G. Kotian",
+        "jobTitle": "Senior Physiotherapist",
         "worksFor": {
           "@id": "https://kskhealthcare.in/#organization"
-        }
+        },
+        "qualifications": "MPT (Pediatrics & Neurology)",
+        "yearsOfExperience": "7+"
       },
       {
-        "@type": "MedicalSpecialist",
-        "name": "Mrs. Gayathri",
-        "jobTitle": "Special Educator & Language Specialist",
+        "@type": "Physician",
+        "name": "Dr. Harish Shinde",
+        "jobTitle": "Senior Audiologist",
         "worksFor": {
           "@id": "https://kskhealthcare.in/#organization"
-        }
+        },
+        "qualifications": "M.Sc (Audiology), RCI & ISHA Certified",
+        "yearsOfExperience": "18+"
+      },
+      {
+        "@type": "Physician",
+        "name": "Dr. Satheesh Sakinala Patel",
+        "jobTitle": "Sr. Speech-Language Pathologist & Audiologist",
+        "worksFor": {
+          "@id": "https://kskhealthcare.in/#organization"
+        },
+        "qualifications": "M.Sc (SLP & Audiology), RCI & ISHA Certified",
+        "yearsOfExperience": "16+"
       }
     ],
     "sameAs": [
-      "https://www.facebook.com/kskhealthcare",
-      "https://www.instagram.com/kskhealthcare",
-      "https://www.linkedin.com/company/kskhealthcare",
-      "https://www.youtube.com/@kskhealthcare"
+      "https://www.facebook.com/profile.php?id=61563837613811",
+      "https://www.instagram.com/kskhealthcare/",
+      "https://www.linkedin.com/in/ksk-health-care-b067a0329/",
+      "https://x.com/kskhealthcarein"
     ],
     "hasMap": "https://www.google.com/maps?q=KSK+Healthcare,+Doddanekundi,+Bengaluru&ll=12.9698,77.7499&z=17",
     "amenityFeature": [

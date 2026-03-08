@@ -81,7 +81,7 @@ const PatientSuccessStories = () => {
               <div className="flex items-center space-x-4">
                 <img
                   src={story.image}
-                  alt={story.name}
+                  alt={`Portrait of ${story.name}`}
                   className="w-16 h-16 rounded-full object-cover"
                 />
                 <div>
@@ -135,7 +135,7 @@ const PatientSuccessStories = () => {
                         src={story.videoTestimonial.thumbnail}
                         alt={story.videoTestimonial.title}
                         className="w-full h-full object-cover"
-                        onLoad={(e) => {
+                        onLoad={() => {
                           // Image loaded successfully - no logging needed in production
                         }}
                         onError={(e) => {
@@ -240,7 +240,7 @@ const PatientSuccessStories = () => {
               </h4>
 
               <div className="space-y-4">
-                {Object.entries(story.beforeAfter.before).map(([key, beforeValue], index) => {
+                {Object.entries(story.beforeAfter.before).map(([key, beforeValue]) => {
                   const afterValue = story.beforeAfter.after[key];
                   const label = key.charAt(0).toUpperCase() + key.slice(1).replace(/([A-Z])/g, ' $1');
 

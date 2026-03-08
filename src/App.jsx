@@ -60,7 +60,7 @@ import FloatingContactButtons from './components/FloatingContactButtons';
 import SymptomChecker from './components/SymptomChecker';
 import PatientSuccessStories from './components/PatientSuccessStories';
 import { CHATBOT_CONFIG } from './config/chatbot';
-import { useCTATracking, usePhoneTracking } from './hooks/useAnalytics';
+import { usePhoneTracking } from './hooks/useAnalytics';
 
 const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -77,7 +77,6 @@ const App = () => {
   };
 
   // Analytics tracking hooks
-  const { trackCTA } = useCTATracking();
   const { trackPhone } = usePhoneTracking();
 
   // Navigation items
@@ -137,7 +136,7 @@ const App = () => {
   const otherDoctors = DOCTORS.filter(doc => !doc.isFounder);
 
   return (
-    <GoogleAnalyticsProvider measurementId="G-XXXXXXXXXX">
+    <GoogleAnalyticsProvider measurementId="G-D2TM67YPS5">
       <Routes>
         <Route path="/" element={
           <div className="min-h-screen bg-white">

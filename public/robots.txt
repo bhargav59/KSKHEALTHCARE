@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://kskhealthcare.in/sitemap.xml

@@ -63,7 +63,7 @@ const HeroSection = ({ scrollToSection }) => {
                         <div className="flex -space-x-3">
                             {[1, 2, 3, 4].map((i) => (
                                 <div key={i} className="w-10 h-10 rounded-full bg-gray-200 border-2 border-white flex items-center justify-center overflow-hidden">
-                                    <img src={`https://i.pravatar.cc/100?img=${i + 10}`} alt="Patient" className="w-full h-full object-cover" />
+                                    <img src={`https://i.pravatar.cc/100?img=${i + 10}`} alt={`Patient Testimonial ${i}`} className="w-full h-full object-cover" />
                                 </div>
                             ))}
                         </div>
